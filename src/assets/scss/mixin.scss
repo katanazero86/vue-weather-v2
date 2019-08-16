@@ -1,0 +1,36 @@
+
+// overflow mixin
+@mixin overflow() {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+@mixin overflow-x() {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+@mixin overflow-y() {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+
+// responsive mixin
+
+@mixin responsive($flag) {
+
+  @if $flag == mobile {
+    @media all and (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+
+@mixin transitionAnimate() {
+  transition: ease all .3s;
+}

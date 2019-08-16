@@ -1,0 +1,18 @@
+// web font
+@import url('https://fonts.googleapis.com/css?family=Lexend+Giga|Sunflower:300&display=swap');
+
+@import './mixin';
+@import './variable';
+
+//global
+
+* {
+  font-family: 'Lexend Giga', 'Sunflower', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
