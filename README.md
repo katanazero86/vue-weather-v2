@@ -16,6 +16,8 @@ npm i --save vue-router vuex
 vue ui
 runtimeCompiler: true 설정
 
+CSS 그라데이션 참조 사이트
+- https://webgradients.com/
 
 ```
 
