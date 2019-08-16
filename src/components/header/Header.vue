@@ -46,7 +46,11 @@ export default {
   methods: {
     movePath (targetPath) {
       if (targetPath) {
-        console.log(targetPath)
+        if (this.$route.path === targetPath) {
+          location.reload()
+        } else {
+          this.$router.push(targetPath)
+        }
       }
     }
   }
@@ -67,8 +71,8 @@ export default {
     left: 0;
     right: 0;
 
-    background-color: $bgColorPurple;
-    color: $fontColorWhite;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    color: $fontColorBlack;
     font-weight: 600;
     font-size: $fontSize16;
     letter-spacing: -0.5px;
@@ -97,6 +101,10 @@ export default {
           cursor: pointer;
         }
 
+        > div:hover {
+          color: $fontColorWhite;
+        }
+
       }
 
     }
@@ -112,7 +120,11 @@ export default {
         .header-nav-content {
 
           > div {
-            padding: 20px;
+            cursor: pointer;
+          }
+
+          > div:hover {
+            color: $fontColorBlack;
           }
 
         }

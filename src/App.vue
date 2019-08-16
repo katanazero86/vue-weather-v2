@@ -9,11 +9,11 @@
 <script>
 
 import Header from './components/header/Header'
-import Footer from "./components/footer/Footer";
+import Footer from './components/footer/Footer'
 export default {
   name: 'app',
   components: {
-      Footer,
+    Footer,
     Header
   }
 }
@@ -21,4 +21,9 @@ export default {
 
 <style lang="scss">
   @import '@/assets/scss/app.scss';
+
+  #app {
+    height: 100%;
+  }
+
 </style>

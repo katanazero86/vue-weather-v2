@@ -8,9 +8,9 @@
 </template>
 
 <script>
-    export default {
-        name: "Footer"
-    }
+export default {
+  name: 'Footer'
+}
 </script>
 
 <style lang="scss" scoped>
@@ -18,8 +18,8 @@
   @import '@/assets/scss/app.scss';
 
   .footer-wrap {
-    background-color: $bgColorGray;
-    color: $fontColorWhite;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    color: $fontColorBlack;
     font-size: $fontSize12;
     font-weight: 600;
 
