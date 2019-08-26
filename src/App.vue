@@ -11,21 +11,12 @@
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 
-import cityListJson from './city.list.json';
-
 export default {
   name: 'app',
   components: {
     Footer,
     Header
-  },
-
-    mounted() {
-
-      // console.log(cityListJson.filter(city => city.country.toLowerCase() == 'kr'));
-
-    }
-
+  }
 }
 </script>
 

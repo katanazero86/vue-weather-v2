@@ -1,26 +1,20 @@
 <template>
   <div id="weather-wrap">
 
-    <div class="weather-dropdown-wrap">
-      <div class="dropdown-select" @click="toggleDropdown = !toggleDropdown">
-        <p>원하시는 도시를 선택해주세요.</p>
-        <font-awesome-icon icon="angle-up" class="dropdown-arrow-up" v-if="toggleDropdown"/>
-        <font-awesome-icon icon="angle-down" class="dropdown-arrow-down" v-else/>
-      </div>
-      <div class="dropdown-content" v-if="toggleDropdown">
-        <ul>
-          <li>서울</li>
-          <li>인천</li>
-          <li>ㅇㅇ</li>
-        </ul>
-      </div>
-    </div>
+    <Dropdown dropdown-title="원하시는 도시를 선택해주세요." :dropdown-data="cityListKrJson" @select="getWeatherInfo($event)"/>
 
     <div class="weather-current-wrap">
       <div class="weather-current-header">
         <h3>
-          Weather in
+          Weather in {{selectedName}}
         </h3>
+        <div v-if="currentWeather != null">
+          <h4>
+            {{currentWeather.weather[0].main}}
+            <img :src="`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`" width="55" height="55"/>
+            <span>{{(currentWeather.main.temp - 273.15).toFixed(1)}} °C</span>
+          </h4>
+        </div>
       </div>
       <div class="weather-current-content">
           <table>
@@ -37,7 +31,7 @@
             </thead>
             <tbody>
               <tr v-if="currentWeather != null">
-                <td>{{currentWeather.wind}}</td>
+                <td>{{currentWeather.wind.speed}} m/s | {{currentWeather.wind.deg}} deg</td>
                 <td>{{currentWeather.clouds}}</td>
                 <td>{{currentWeather.main.pressure}} hpa</td>
                 <td>{{currentWeather.main.humidity}} %</td>
@@ -50,40 +44,49 @@
       </div>
     </div>
 
-<!--    {{currentWeather}}-->
+    {{currentWeather}}
+
   </div>
 </template>
 
 <script>
-
+    import cityListKrJson from '../../../city.list.kr.json';
     import * as moment from 'moment-timezone';
+
+    import Dropdown from "../component/Dropdown";
 
     const API_KEY = process.env.VUE_APP_API_KEY;
 
     export default {
         name: 'Weather',
-
+        components: {Dropdown},
         data() {
             return {
               currentWeather : null,
-                toggleDropdown : false,
+              toggleDropdown : false,
+              cityListKrJson : [],
+                selectedName : '',
             }
         },
 
-        mounted() {
-            // console.log(API_KEY);
-            this.getWeatherInfo();
+        created() {
+            this.cityListKrJson = cityListKrJson;
+        },
 
-            // console.log(moment);
+        mounted() {
+            // this.getWeatherInfo();
         },
 
         methods: {
-          getWeatherInfo() {
+          getWeatherInfo(targetData) {
+
+              this.selectedName = targetData.name;
 
               const param = {
-                  q : 'Incheon,kr',
+                  // q : 'Incheon,kr',
+                  q : `${targetData.name},${targetData.country.toLowerCase()}`,
                   appid : API_KEY
-              }
+              };
 
               this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, {params : param})
                   .then((result) => {
@@ -95,7 +98,6 @@
           },
 
             changeTimeStampToDate(timestamp) {
-              // console.log(moment(timestamp*1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss'));
               return moment(timestamp*1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
             }
 
@@ -114,78 +116,9 @@
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
   }
-
-  .weather-dropdown-wrap {
-
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 5px;
-
-    .dropdown-select {
-
-      cursor: pointer;
-      border: solid 1px #e7e7e7;
-      background-color: #ffffff;
-      padding: 0 10px;
-      height: 42px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-
-      p {
-        margin: 0;
-      }
-
-      .dropdown-arrow-down {
-          /*margin-left: 10px;*/
-      }
-      .dropdown-arrow-up {
-        /*margin-left: 10px;*/
-      }
-    }
-
-
-    .dropdown-content {
-      position: absolute;
-      top: 48px;
-      left: 5px;
-      right: 5px;
-      border: solid 1px #e7e7e7;
-      background-color: #ffffff;
-      padding: 10px;
-      margin: 0;
-
-      ul {
-        margin: 0;
-        padding: 0;
-
-        li {
-          margin: 0;
-          padding: 5px 0;
-          list-style: none;
-          cursor: pointer;
-        }
-
-        li:hover {
-          background: #f8f8f8;
-        }
-
-      }
-
-
-    }
-
-  }
-
 
   .weather-current-wrap {
     padding: 10px;
@@ -193,26 +126,39 @@
     .weather-current-content {
       font-size: 13px;
       letter-spacing: -0.5px;
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+        min-width: 550px;
+        border-spacing: 0;
+        border-collapse: collapse;
+        thead {
+          th {
+            font-size: 14px;
+            letter-spacing: -0.5px;
+            text-align: center;
+            font-family: "Sunflower";
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              text-align: center;
+            }
+          }
+        }
+
+      }
+
     }
 
   }
 
 
   @include responsive(mobile) {
-    /*
-    .weather-current-wrap {
 
-      padding: 10px;
-
-      .weather-current-content {
-        font-size: 12px;
-        letter-spacing: -0.5px;
-        text-overflow: ellipsis;
-      }
-
-    }
-
-     */
   }
 
 </style>
