@@ -68,8 +68,7 @@ export default {
 
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
+    z-index: 2;
 
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     color: $fontColorBlack;

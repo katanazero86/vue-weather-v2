@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    {{currentWeather}}
+    <!--{{currentWeather}}-->
 
   </div>
 </template>
@@ -53,57 +53,55 @@
     import cityListKrJson from '../../../city.list.kr.json';
     import * as moment from 'moment-timezone';
 
-    import Dropdown from "../component/Dropdown";
+    import Dropdown from '../component/Dropdown';
 
     const API_KEY = process.env.VUE_APP_API_KEY;
 
     export default {
         name: 'Weather',
-        components: {Dropdown},
-        data() {
+        components: { Dropdown },
+        data () {
             return {
-              currentWeather : null,
-              toggleDropdown : false,
-              cityListKrJson : [],
-                selectedName : '',
+              currentWeather: null,
+              toggleDropdown: false,
+              cityListKrJson: [],
+                selectedName: ''
             }
         },
 
-        created() {
+        created () {
             this.cityListKrJson = cityListKrJson;
         },
 
-        mounted() {
+        mounted () {
             // this.getWeatherInfo();
         },
 
         methods: {
-          getWeatherInfo(targetData) {
-
+          getWeatherInfo (targetData) {
               this.selectedName = targetData.name;
 
               const param = {
                   // q : 'Incheon,kr',
-                  q : `${targetData.name},${targetData.country.toLowerCase()}`,
-                  appid : API_KEY
+                  q: `${targetData.name},${targetData.country.toLowerCase()}`,
+                  appid: API_KEY
               };
 
-              this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, {params : param})
+              this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params: param })
                   .then((result) => {
                       this.currentWeather = result.data;
                   }).catch((err) => {
                     console.log(err);
-
               });
           },
 
-            changeTimeStampToDate(timestamp) {
-              return moment(timestamp*1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
+            changeTimeStampToDate (timestamp) {
+              return moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
             }
 
-        },
+        }
 
-    }
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -112,16 +110,21 @@
 
   #weather-wrap {
     height: 100%;
-    padding: 20px;
+    padding: 25px 15px;
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .weather-current-wrap {
     padding: 10px;
+    width: 100%;
+    max-width: 1024px;
+
+    .weather-current-header {
+    }
 
     .weather-current-content {
       font-size: 13px;
@@ -130,15 +133,18 @@
 
       table {
         width: 100%;
-        min-width: 550px;
+        min-width: 530px;
         border-spacing: 0;
         border-collapse: collapse;
         thead {
           th {
-            font-size: 14px;
+            font-size: 13px;
             letter-spacing: -0.5px;
             text-align: center;
             font-family: "Sunflower";
+            background-color: #3443eb;
+            padding: 5px;
+            color: white;
           }
         }
 
@@ -155,7 +161,6 @@
     }
 
   }
-
 
   @include responsive(mobile) {
 
