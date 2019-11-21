@@ -19,6 +19,9 @@ runtimeCompiler: true 설정
 CSS 그라데이션 참조 사이트
 - https://webgradients.com/
 
+- weather api
+https://openweathermap.org/api
+
 ```
 
 ## Project setup
