@@ -18,10 +18,11 @@ export default {
   @import '@/assets/scss/app.scss';
 
   .footer-wrap {
+    border-top : 2px solid $bgColorBlack-light;
     height: 60px;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-color: #ebebeb;
     color: $fontColorBlack;
-    font-size: $fontSize12;
+    font-size: $fontSize13;
     font-weight: 600;
     display: flex;
     flex-wrap: nowrap;
