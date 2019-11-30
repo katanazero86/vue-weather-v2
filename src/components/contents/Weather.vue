@@ -96,14 +96,17 @@
 <script>
     import cityListKrJson from '../../../city.list.kr.json';
     import * as moment from 'moment-timezone';
-
-    import Dropdown from '../component/Dropdown';
+    import { mapActions } from 'vuex';
 
     const API_KEY = process.env.VUE_APP_API_KEY;
 
     export default {
         name: 'Weather',
-        components: { Dropdown },
+
+        components: {
+         'Dropdown': () => import('../component/Dropdown')
+        },
+
         data () {
             return {
               currentWeather: null,
@@ -119,10 +122,20 @@
         },
 
         mounted () {
+          this.callOpenWeatherMapWeather();
+          this.setTestValue();
+          this.$store.dispatch('weatherModule/callOpenWeatherMapWeather');
+
             // this.getWeatherInfo();
         },
 
         methods: {
+
+          ...mapActions({
+            'callOpenWeatherMapWeather': 'weatherModule/callOpenWeatherMapWeather',
+            'setTestValue': 'setTestValue'
+          }),
+
           refreshWeatherInfo () {
             const param = {
               // q : 'Incheon,kr',
@@ -147,6 +160,8 @@
                   q: `${targetData.name},${targetData.country.toLowerCase()}`,
                   appid: API_KEY
               };
+
+
 
               this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params: param })
                   .then((result) => {

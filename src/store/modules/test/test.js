@@ -5,21 +5,22 @@ const state = {
 
 const getters = {
   testValue (state, getters, rootState) {
-    return state.testValue
+    return state.testValue;
   }
 }
 
 const mutations = {
   setTestValue (state, payload) {
-    state.testValue = payload
+    state.testValue = payload;
   }
 }
 
 const actions = {
   setTestValue (context, payload) {
     // {state, commit, rootState}
+    console.log('TEST action');
 
-    context.commit('setTestValue', '변신!!')
+    context.commit('setTestValue', '변신!!');
   }
 }
 

@@ -1,19 +1,27 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import test from './modules/test.js'
+import test from './modules/test/test.js';
+import weatherModule from './modules/weather/index';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   strict: false,
+
   state: {
     rootTestValue: 'root store state value..'
   },
 
   modules: {
-    test
-  }
-})
+    test,
+    weatherModule
+    // weatherModule : {
+    //   namespaced : true,
+    //   ...weatherModule
+    // }
 
-export default store
+  }
+});
+
+export default store;
