@@ -1,12 +1,15 @@
+import axios from 'axios';
+
 export default {
   findOpenWeatherMapWeather (context, payload) {
     try {
-      return this.$axios.get();
+      return axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params: payload.params });
     } catch (err) {
-
+      return new Promise((resolve, reject) => {
+        console.log('findOpenWeatherMapWeather exception..');
+        reject(err);
+      });
     }
-
-    // return this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params: payload })
   },
 
   setCurrentWeatherAction (context, payload) {

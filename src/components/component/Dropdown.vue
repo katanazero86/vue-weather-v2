@@ -1,14 +1,14 @@
 <template>
   <div class="dropdown-wrap">
-    <div class="dropdown-select" @click="toggleDropdown = !toggleDropdown">
+    <div class="dropdown-select" @click="toggleDropdown">
       <p>{{dropdownTitle}}</p>
-      <font-awesome-icon icon="angle-up" class="dropdown-arrow-up" v-if="toggleDropdown"/>
+      <font-awesome-icon icon="angle-up" class="dropdown-arrow-up" v-if="toggle"/>
       <font-awesome-icon icon="angle-down" class="dropdown-arrow-down" v-else/>
     </div>
-    <div class="dropdown-content" v-if="toggleDropdown">
-      <ul>
-        <template v-if="dropdownData.length > 0" v-for="data in dropdownData">
-          <li @click="selectContent($event, data)" :class="[selectedData.name == data.name ? 'selected-item' : '']">{{data.name}}</li>
+    <div class="dropdown-content" v-if="toggle">
+      <ul v-if="dropdownData.length > 0">
+        <template v-for="(data, index) in dropdownData">
+          <li @click="selectCity(data)" :key="index" :class="[selectedCity ? (selectedCity.name == data.name ? 'selected-item' : '') : '']">{{data.name}}</li>
         </template>
       </ul>
     </div>
@@ -16,45 +16,46 @@
 </template>
 
 <script>
+import toggleMixin from '../../mixins/toggleMixin';
+
 export default {
   name: 'dropdown',
   props: {
-    dropdownData: { type: Array, default: [], required: true },
+    dropdownData: { type: Array,
+                    required: true,
+                    default () {
+                      return [];
+                    }
+                  },
     dropdownTitle: { type: String, default: '' }
   },
+  mixins: [toggleMixin],
 
   data () {
     return {
-      toggleDropdown: false,
-      selectedData: { name: '' }
-    }
+      selectedCity: null
+    };
   },
 
   mounted () {
-    document.body.addEventListener('click', this.closeDropdown)
+    this.$nextTick(() => {
+      document.body.addEventListener('click', this.closeToggleDropdown);
+    });
   },
 
   destroyed () {
-    document.body.removeEventListener('click', this.closeDropdown)
+    document.body.removeEventListener('click', this.closeToggleDropdown);
   },
 
   methods: {
-    selectContent (event, selectedData) {
-      this.selectedData = selectedData
-      this.$emit('select', this.selectedData)
-      this.toggleDropdown = false
-    },
-
-    closeDropdown (event) {
-      // console.log(this.$el.contains(event.target));
-      // this.toggleDropdown = false;
-      if (!this.$el.contains(event.target)) {
-        this.toggleDropdown = false
-      }
+    selectCity (targetCity) {
+      this.selectedCity = targetCity;
+      this.$emit('select', { ...this.selectedCity });
+      this.toggle = false;
     }
   }
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
