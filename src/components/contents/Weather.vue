@@ -96,16 +96,16 @@
 <script>
     import cityListKrJson from '../../../city.list.kr.json';
     import * as moment from 'moment-timezone';
-    import { mapActions } from 'vuex';
+    import weatherHelperMixin from '../../mixins/weather/weatherHelperMixin';
 
     const API_KEY = process.env.VUE_APP_API_KEY;
 
     export default {
         name: 'Weather',
-
         components: {
          'Dropdown': () => import('../component/Dropdown')
         },
+      mixins: [weatherHelperMixin],
 
         data () {
             return {
@@ -119,22 +119,19 @@
 
         created () {
             this.cityListKrJson = cityListKrJson;
-        },
-
-        mounted () {
-          this.callOpenWeatherMapWeather();
-          this.setTestValue();
-          this.$store.dispatch('weatherModule/callOpenWeatherMapWeather');
-
-            // this.getWeatherInfo();
+            this.getOpenWeatherMapWeather();
         },
 
         methods: {
 
-          ...mapActions({
-            'callOpenWeatherMapWeather': 'weatherModule/callOpenWeatherMapWeather',
-            'setTestValue': 'setTestValue'
-          }),
+          getOpenWeatherMapWeather () {
+            this.findOpenWeatherMapWeather().then((result) => {
+              console.log(result);
+            }).catch((err) => {
+              console.log(err);
+              return false;
+            });
+          },
 
           refreshWeatherInfo () {
             const param = {
@@ -160,8 +157,6 @@
                   q: `${targetData.name},${targetData.country.toLowerCase()}`,
                   appid: API_KEY
               };
-
-
 
               this.$axios.get(`http://api.openweathermap.org/data/2.5/weather`, { params: param })
                   .then((result) => {
