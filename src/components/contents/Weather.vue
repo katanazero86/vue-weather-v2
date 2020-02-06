@@ -12,6 +12,9 @@
             </h3>
             <Refresh @click="refreshOpenWeatherMapWeather"/>
           </div>
+          <div class="header-time">
+            조회시간: {{currentTime}}
+          </div>
           <div>
             <h4>
               {{currentWeather.weather[0].main}}
@@ -39,8 +42,8 @@
               <td>{{currentWeather.clouds.all}} %</td>
               <td>{{currentWeather.main.pressure}} hpa</td>
               <td>{{currentWeather.main.humidity}} %</td>
-              <td>{{changeTimeStampToDate(currentWeather.sys.sunrise) }}</td>
-              <td>{{changeTimeStampToDate(currentWeather.sys.sunset) }}</td>
+              <td>{{parseTimeStampToDate(currentWeather.sys.sunrise) }}</td>
+              <td>{{parseTimeStampToDate(currentWeather.sys.sunset) }}</td>
               <td>{{`[${currentWeather.coord.lat}, ${currentWeather.coord.lon}]`}}</td>
             </tr>
             </tbody>
@@ -54,7 +57,6 @@
 
 <script>
     import cityListKrJson from '../../../city.list.kr.json';
-    import * as moment from 'moment-timezone';
     import weatherHelperMixin from '../../mixins/weather/weatherHelperMixin';
 
     const API_KEY = process.env.VUE_APP_API_KEY;
@@ -91,6 +93,7 @@
             };
 
             this.setInitCurrentWeatherState();
+            this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
 
             this.findOpenWeatherMapWeather({ params }).then((result) => {
               if (result.status === 200) {
@@ -115,6 +118,7 @@
             };
 
             this.setInitCurrentWeatherState();
+            this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
 
             this.findOpenWeatherMapWeather({ params }).then((result) => {
               if (result.status === 200) {
@@ -127,9 +131,9 @@
             });
           },
 
-            changeTimeStampToDate (timestamp) {
-              return moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
-            }
+          parseTimeStampToDate (timestamp) {
+            return this.$moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
+          }
 
         }
 

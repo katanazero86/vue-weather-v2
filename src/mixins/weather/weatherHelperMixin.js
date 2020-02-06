@@ -8,7 +8,7 @@ export default {
     }),
 
     ...mapState('weather',
-      ['currentWeather']
+      ['currentWeather', 'currentTime']
     )
 
   },
@@ -21,6 +21,7 @@ export default {
 
     ...mapMutations({
       setCurrentWeather: 'weather/setCurrentWeather',
+      setCurrentTime: 'weather/setCurrentTime',
       setInitState: 'weather/setInitState',
       setInitCurrentWeatherState: 'weather/setInitCurrentWeatherState'
     })

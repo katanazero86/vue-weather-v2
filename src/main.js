@@ -16,7 +16,11 @@ import store from './store/index';
 // axios plugin
 import axiosPlugin from './plugins/axiosPlugin';
 
+// moment plugin
+import momentPlugin from './plugins/momentPlugin'
+
 Vue.use(axiosPlugin);
+Vue.use(momentPlugin);
 Vue.use(VueRouter);
 
 library.add(fas);

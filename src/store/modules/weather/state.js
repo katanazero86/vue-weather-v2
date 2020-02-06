@@ -1,3 +1,4 @@
 export default ({
-  currentWeather: null
+  currentWeather: null,
+  currentTime: null
 })
