@@ -15,15 +15,19 @@ export default {
 
   methods: {
     ...mapActions({
-      findOpenWeatherMapWeather: 'weather/findOpenWeatherMapWeather',
-      setCurrentWeatherAction: 'weather/setCurrentWeatherAction'
+      findOpenWeatherMapCurrentWeather: 'weather/findOpenWeatherMapCurrentWeather',
+      findOpenWeatherMap5DayForecast: 'weather/findOpenWeatherMap5DayForecast',
+      setCurrentWeatherAction: 'weather/setCurrentWeatherAction',
+      setForecastAction: 'weather/setForecastAction'
     }),
 
     ...mapMutations({
       setCurrentWeather: 'weather/setCurrentWeather',
+      setForecast: 'weather/setForecast',
       setCurrentTime: 'weather/setCurrentTime',
       setInitState: 'weather/setInitState',
-      setInitCurrentWeatherState: 'weather/setInitCurrentWeatherState'
+      setInitCurrentWeatherState: 'weather/setInitCurrentWeatherState',
+      setInitForecastState: 'weather/setInitForecastState'
     })
   }
 

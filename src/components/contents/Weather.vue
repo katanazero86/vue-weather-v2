@@ -78,6 +78,14 @@
 
         created () {
             this.cityListKrJson = cityListKrJson;
+
+            const params = {
+            q: 'Incheon,kr',
+            appid: API_KEY
+          }
+            this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
+              console.log(result);
+            });
         },
 
         methods: {
@@ -95,7 +103,7 @@
             this.setInitCurrentWeatherState();
             this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
 
-            this.findOpenWeatherMapWeather({ params }).then((result) => {
+            this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
               if (result.status === 200) {
                 console.log(result.data);
                 this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
@@ -120,7 +128,7 @@
             this.setInitCurrentWeatherState();
             this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
 
-            this.findOpenWeatherMapWeather({ params }).then((result) => {
+            this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
               if (result.status === 200) {
                 console.log(result.data);
                 this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
