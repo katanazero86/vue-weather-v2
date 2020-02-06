@@ -10,11 +10,23 @@
   font-family: 'Lexend Giga', 'Sunflower', sans-serif;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
 }
 
 

@@ -21,7 +21,8 @@ export default {
 
     ...mapMutations({
       setCurrentWeather: 'weather/setCurrentWeather',
-      setInitState: 'weather/setInitState'
+      setInitState: 'weather/setInitState',
+      setInitCurrentWeatherState: 'weather/setInitCurrentWeatherState'
     })
   }
 

@@ -20,7 +20,6 @@
 
 
 // responsive mixin
-
 @mixin responsive($flag) {
 
   @if $flag == mobile {
@@ -30,7 +29,7 @@
   }
 }
 
-
+// transition mixin
 @mixin transitionAnimate() {
-  transition: ease all .3s;
+  transition: ease all 0.3s;
 }

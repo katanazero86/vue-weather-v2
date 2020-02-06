@@ -5,5 +5,9 @@ export default {
 
   setInitState (state) {
     state.currentWeather = null;
+  },
+
+  setInitCurrentWeatherState (state) {
+    state.currentWeather = null;
   }
 };

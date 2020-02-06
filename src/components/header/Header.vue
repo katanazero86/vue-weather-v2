@@ -3,7 +3,7 @@
       <nav class="header-nav">
         <div class="header-nav-content">
           <template v-for="(item, index) in navItems">
-            <div @click="movePath(item.path)" :key="index">
+            <div @click="movePath(item.path)" :key="index" :class="[$route.path == item.path ? 'nav-active' : '']">
               {{item.title}}
             </div>
           </template>
@@ -20,42 +20,31 @@ export default {
     return {
       navItems: [
         {
-          title: 'HOME',
+          title: 'MAIN',
           path: '/'
         },
         {
           title: 'INTRO',
           path: '/intro'
-        },
-        {
-          title: 'SCROLL1',
-          path: ''
-        },
-        {
-          title: 'SCROLL2',
-          path: ''
-        },
-        {
-          title: 'SCROLL3',
-          path: ''
         }
       ]
-    }
+    };
   },
 
   methods: {
+
     movePath (targetPath) {
       if (targetPath) {
         if (this.$route.path === targetPath) {
-          location.reload()
+          location.reload();
         } else {
-          this.$router.push(targetPath)
+          this.$router.push(targetPath);
         }
       }
     }
   }
 
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -70,12 +59,11 @@ export default {
     top: 0;
     z-index: 2;
 
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    color: $fontColorBlack;
+    background-color: $wrapHeaderBackgroundColor;
+    color: $fontColorBlackLight;
     font-weight: 600;
     font-size: $fontSize16;
     letter-spacing: -0.5px;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.35);
 
     .header-nav {
 
@@ -104,6 +92,10 @@ export default {
           color: $fontColorWhite;
         }
 
+        .nav-active {
+          border-bottom: 2px solid #333333;
+        }
+
       }
 
     }
@@ -123,7 +115,7 @@ export default {
           }
 
           > div:hover {
-            color: $fontColorBlack;
+            color: $fontColorWhite;
           }
 
         }
