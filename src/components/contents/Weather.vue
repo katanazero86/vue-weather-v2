@@ -57,6 +57,8 @@
 
 <script>
     import cityListKrJson from '../../../city.list.kr.json';
+    import sampleCurrentWeather from '../../../sample.current.weather.json';
+    import sampleForecast from '../../../sample.forecast.json';
     import weatherHelperMixin from '../../mixins/weather/weatherHelperMixin';
 
     const API_KEY = process.env.VUE_APP_API_KEY;
@@ -79,16 +81,20 @@
         created () {
             this.cityListKrJson = cityListKrJson;
 
-            const params = {
-            q: 'Incheon,kr',
-            appid: API_KEY
-          }
-            this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
-              console.log(result);
-            });
+          //   const params = {
+          //   q: 'Incheon,kr',
+          //   appid: API_KEY
+          // }
+          //   this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
+          //     console.log(result);
+          //   });
         },
 
         methods: {
+
+        getOpenWeatherMapForecast () {
+
+        },
 
           getOpenWeatherMapWeather (targetCity) {
             const name = targetCity.name;
@@ -103,15 +109,18 @@
             this.setInitCurrentWeatherState();
             this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
 
-            this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
-              if (result.status === 200) {
-                console.log(result.data);
-                this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
-              }
-            }).catch((err) => {
-              console.log(err);
-              return false;
-            });
+            // sample test
+            this.setCurrentWeather(sampleCurrentWeather);
+
+            // this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
+            //   if (result.status === 200) {
+            //     console.log(result.data);
+            //     this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
+            //   }
+            // }).catch((err) => {
+            //   console.log(err);
+            //   return false;
+            // });
           },
 
           refreshOpenWeatherMapWeather () {
