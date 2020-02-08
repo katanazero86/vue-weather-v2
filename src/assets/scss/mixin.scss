@@ -23,6 +23,7 @@
 @mixin responsive($flag) {
 
   @if $flag == mobile {
+    // all : default
     @media all and (max-width: 768px) {
       @content;
     }
