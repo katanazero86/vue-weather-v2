@@ -40,20 +40,25 @@ body {
 // -- flex
 
 .flex-layout {
-
   &-wrap {
     display: flex;
     flex-wrap: wrap;
   }
-
+  &-nowrap {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 }
 
 .row {
   flex-direction: row;
 }
 
-.align {
+.column {
+  flex-direction: column;
+}
 
+.align-item {
   &-start {
     align-items: flex-start;
   }
@@ -63,11 +68,28 @@ body {
   &-end {
     align-items: flex-end;
   }
-
 }
 
-.justify {
+// flex-wrap: wrap 설정인 경우만 사용가능
+.align-content {
+  &-start {
+    align-content: flex-start;
+  }
+  &-center {
+    align-content: center;
+  }
+  &-end {
+    align-content: flex-end;
+  }
+  &-around {
+    align-content: space-around;
+  }
+  &-between {
+    align-content: space-between;
+  }
+}
 
+.justify-content {
   &-start {
     justify-content: flex-start;
   }
@@ -83,13 +105,18 @@ body {
   &-between {
     justify-content: space-between;
   }
-
 }
 
 .col {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
+}
+
+.col-6 {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
 }
 
 // -- flex end

@@ -4,11 +4,16 @@
     <Dropdown dropdown-title="원하시는 도시를 선택해주세요." :dropdown-data="cityListKrJson" @select="executeOpenWeatherMapApi"/>
 
     <transition name="fade">
-      <CurrentWeather :current-weather="currentWeather" :current-time="currentTime" @refresh="refreshOpenWeatherMapWeather"/>
+      <CurrentWeather :current-weather="currentWeather"
+                      :current-time="currentTime"
+                      :open-weather-icon-base-url="openWeatherIconBaseUrl"
+                      @refresh="refreshOpenWeatherMapWeather"/>
     </transition>
 
     <transition name="fade">
-      <Forecast :forecast="forecast" />
+      <Forecast :forecast="forecast"
+                :open-weather-icon-base-url="openWeatherIconBaseUrl"
+      />
     </transition>
 
   </div>
@@ -31,13 +36,13 @@
     },
     mixins: [weatherHelperMixin],
 
-    data () {
+    data() {
       return {
         cityListKrJson: []
       };
     },
 
-    created () {
+    created() {
       this.cityListKrJson = cityListKrJson;
 
       //   const params = {
@@ -51,15 +56,15 @@
 
     methods: {
 
-      executeOpenWeatherMapApi (targetCity) {
+      executeOpenWeatherMapApi(targetCity) {
         // current weather data
-        this.getOpenWeatherMapWeather({ ...targetCity });
+        this.getOpenWeatherMapWeather({...targetCity});
 
         // 5 day / 3 hour forecast
-        this.getOpenWeatherMapForecast({ ...targetCity });
+        this.getOpenWeatherMapForecast({...targetCity});
       },
 
-      getOpenWeatherMapForecast (targetCity) {
+      getOpenWeatherMapForecast(targetCity) {
         const name = targetCity.name;
         const country = targetCity.country.toLowerCase();
 
@@ -75,14 +80,14 @@
         this.setInitForecastState();
 
         // sample test
-        this.setForecastAction({ forecast: sampleForecast });
+        this.setForecastAction({forecast: sampleForecast});
 
         // this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
 
-          // if (result.status === 200) {
-            //     console.log(result.data);
-            // this.setForecastAction({ forecast: { ...result.data } });
-          // }
+        // if (result.status === 200) {
+        //     console.log(result.data);
+        // this.setForecastAction({ forecast: { ...result.data } });
+        // }
 
         // }).catch((err) => {
         //   console.log(err);
@@ -90,7 +95,7 @@
         // });
       },
 
-      getOpenWeatherMapWeather (targetCity) {
+      getOpenWeatherMapWeather(targetCity) {
         const name = targetCity.name;
         const country = targetCity.country.toLowerCase();
 
@@ -101,10 +106,10 @@
         };
 
         this.setInitCurrentWeatherState();
-        this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
+        this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
 
         // sample test
-        this.setCurrentWeatherAction({ currentWeather: sampleCurrentWeather });
+        this.setCurrentWeatherAction({currentWeather: sampleCurrentWeather});
 
         // this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
         //   if (result.status === 200) {
@@ -117,7 +122,7 @@
         // });
       },
 
-      refreshOpenWeatherMapWeather () {
+      refreshOpenWeatherMapWeather() {
         const targetCity = this.cityListKrJson.find(city => city.id === this.currentWeather.id);
         const name = targetCity.name;
         const country = targetCity.country.toLowerCase();
@@ -129,12 +134,12 @@
         };
 
         this.setInitCurrentWeatherState();
-        this.setCurrentTime({ currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss') });
+        this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
 
-        this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
+        this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
           if (result.status === 200) {
             console.log(result.data);
-            this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
+            this.setCurrentWeatherAction({currentWeather: {...result.data}});
           }
         }).catch((err) => {
           console.log(err);

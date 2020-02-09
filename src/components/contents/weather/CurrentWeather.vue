@@ -13,7 +13,7 @@
       <div>
         <h4>
           {{currentWeather.weather[0].main}}
-          <img :src="`${openWeatherIconBaseUrl}${currentWeather.weather[0].icon}@2x.png`" width="55" height="55"/>
+          <img :src="`${openWeatherIconBaseUrl}/${currentWeather.weather[0].icon}@2x.png`" width="55" height="55"/>
           <span>{{(currentWeather.main.temp - 273.15).toFixed(1)}} °C</span>
         </h4>
       </div>
@@ -54,27 +54,22 @@
       'Refresh': () => import('../../component/icon/Refresh')
     },
     props: {
-      currentWeather: { type: Object, default: null },
-      currentTime: { type: String, default: '' }
-    },
-
-    data () {
-      return {
-        openWeatherIconBaseUrl: 'http://openweathermap.org/img/wn/'
-      };
+      currentWeather: {type: Object, default: null},
+      currentTime: {type: String, default: ''},
+      openWeatherIconBaseUrl: {type: String, default: ''}
     },
 
     methods: {
-      refresh () {
+      refresh() {
         this.$emit('refresh');
       },
 
-      parseTimeStampToDate (timestamp) {
+      parseTimeStampToDate(timestamp) {
         return this.$moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
       }
     }
 
-  };
+  }
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import { mapActions, mapGetters, mapMutations, mapState } from 'vuex';
+import {mapActions, mapGetters, mapMutations, mapState} from 'vuex';
 
 export default {
 
@@ -8,7 +8,7 @@ export default {
     }),
 
     ...mapState('weather',
-      ['currentWeather', 'currentTime', 'forecast']
+      ['openWeatherIconBaseUrl', 'currentWeather', 'currentTime', 'forecast']
     )
 
   },
