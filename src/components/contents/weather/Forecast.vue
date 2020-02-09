@@ -15,9 +15,7 @@
           </div>
           <div>
             <table>
-
               <tbody>
-
               <tr v-for="forecast in forecastList">
                 <td>
                   <div class="flex-layout-nowrap align-item-center">
@@ -38,7 +36,6 @@
                 </td>
               </tr>
               </tbody>
-
             </table>
           </div>
         </div>
