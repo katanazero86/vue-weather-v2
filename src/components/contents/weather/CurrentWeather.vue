@@ -1,10 +1,10 @@
 <template>
-  <div class="weather-current-wrap" v-if="currentWeather">
+  <div class="wrap weather-current-wrap" v-if="currentWeather">
     <div class="weather-current-header">
       <div class="header-content">
-        <h3>
+        <h2>
           Weather in {{currentWeather.name}}
-        </h3>
+        </h2>
         <Refresh @click="refresh"/>
       </div>
       <div class="header-time">
@@ -82,20 +82,14 @@
   @import '@/assets/scss/app.scss';
 
   .weather-current-wrap {
-    padding: 10px;
+
     width: 100%;
-    max-width: 1024px;
 
     .weather-current-header {
 
       .header-content {
         display: inline-flex;
         align-items: center;
-      }
-
-      h3 {
-        font-size: 22px;
-        font-weight: 600;
       }
 
       svg {
@@ -111,6 +105,7 @@
       font-size: 13px;
       letter-spacing: -0.5px;
       overflow-x: auto;
+      margin: 16px 0;
 
       table {
         width: 100%;
@@ -125,7 +120,8 @@
             background-color: $bgColor2;
             white-space: nowrap;
             padding: 8px;
-            color: white;
+            color: #3e5569;
+            font-weight: 700;
           }
         }
 

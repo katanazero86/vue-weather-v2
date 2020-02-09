@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-forecast-wrap">
+  <div class="wrap weather-forecast-wrap">
     <div class="weather-forecast-header">
       <div class="header-content">
         <h3>
@@ -24,6 +24,8 @@
   @import '@/assets/scss/app.scss';
 
   .weather-forecast-wrap {
+
+    width: 100%;
 
     .weather-forecast-header {
 
