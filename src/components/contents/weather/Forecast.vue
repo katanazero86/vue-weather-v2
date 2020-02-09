@@ -11,10 +11,35 @@
       <template v-for='(forecastList) in renderForecastList'>
         <div class="col-6 forecast-card">
           <div class="forecast-card-header">
-          {{ parseTimeStampToDate(forecastList[0].dt) }} Asia/Seoul
+            {{ parseTimeStampToDate(forecastList[0].dt) }} Asia/Seoul
           </div>
-          <div v-for="forecast in forecastList">
-            {{forecast.dt_txt}}
+          <div>
+            <table>
+
+              <tbody>
+
+              <tr v-for="forecast in forecastList">
+                <td>
+                  <div class="flex-layout-nowrap align-item-center">
+                    <span>{{ parseTimeStampToDateHour(forecast.dt_txt) }}</span>
+                    <img :src="`${openWeatherIconBaseUrl}/${forecast.weather[0].icon}@2x.png`" width="35" height="35"/>
+                  </div>
+                </td>
+                <td>
+                  <div class="flex-layout-nowrap column align-item-center">
+                    <span class="forecast-temp-badge">{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
+                    <span style="font-style: italic;">{{forecast.weather[0].description}}</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="flex-layout-nowrap align-item-center">
+                    <span>wind:{{forecast.wind.speed}} m/s </span>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+
+            </table>
           </div>
         </div>
       </template>
@@ -58,7 +83,7 @@
 
           if (resultForecastList.length > 0) {
             this.renderForecastList = resultForecastList;
-            console.log(this.renderForecastList)
+            console.log(this.renderForecastList);
           } else {
             this.renderForecastList = null;
           }
@@ -67,11 +92,15 @@
 
       parseTimeStampToDate(timestamp) {
         return this.$moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD(dddd)');
+      },
+
+      parseTimeStampToDateHour(dateTimeString) {
+        return this.$moment(dateTimeString).tz('Asia/Seoul').format('HH:mm');
       }
 
     }
 
-  };
+    };
 </script>
 
 <style lang="scss" scoped>
@@ -105,6 +134,30 @@
           border: 1px solid #ddd;
           font-size: 14px;
           font-weight: 600;
+          padding: 5px;
+        }
+
+        table {
+          height: 100%;
+          width: 100%;
+          font-size: 13px;
+          letter-spacing: -0.3px;
+
+          tr {
+            width: 100%;
+          }
+
+          td {
+            padding: 5px;
+          }
+
+        }
+
+        .forecast-temp-badge {
+          background-color: #4e4d4a;
+          border-radius: 10px;
+          color: $fontColorWhite;
+          padding: 3px 5px;
         }
 
       }
