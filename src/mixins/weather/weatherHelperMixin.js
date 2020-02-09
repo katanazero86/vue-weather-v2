@@ -8,7 +8,7 @@ export default {
     }),
 
     ...mapState('weather',
-      ['currentWeather', 'currentTime']
+      ['currentWeather', 'currentTime', 'forecast']
     )
 
   },

@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-const currentWeatherApiUrl = `https://api.openweathermap.org/data/2.5/weather`;
-const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast`;
+const weatherApiBaseUrl = `https://api.openweathermap.org/data/2.5`;
 
 export default {
 
   // https://openweathermap.org/current
+  // https://api.openweathermap.org/data/2.5/weather
   findOpenWeatherMapCurrentWeather (context, payload) {
     try {
-      return axios.get(currentWeatherApiUrl, { params: payload.params });
+      return axios.get(`${weatherApiBaseUrl}/weather`, { params: payload.params });
     } catch (err) {
       return new Promise((resolve, reject) => {
         console.log('findOpenWeatherMapWeather exception..');
@@ -18,9 +18,10 @@ export default {
   },
 
   // https://openweathermap.org/forecast5
+  // https://api.openweathermap.org/data/2.5/forecast
   findOpenWeatherMap5DayForecast (context, payload) {
     try {
-      return axios.get(forecastApiUrl, { params: payload.params });
+      return axios.get(`${weatherApiBaseUrl}/forecast`, { params: payload.params });
     } catch (err) {
       return new Promise((resolve, reject) => {
         console.log('findOpenWeatherMapWeather exception..');
