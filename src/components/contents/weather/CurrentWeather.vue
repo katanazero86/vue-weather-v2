@@ -111,7 +111,7 @@
         width: 100%;
         border-spacing: 0;
         border-collapse: collapse;
-        
+
         thead {
           th {
             font-size: 13px;
