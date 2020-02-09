@@ -24,6 +24,9 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
   margin: 0;
   padding: 0;
+}
+
+body {
   height: 100%;
   width: 100%;
 }
@@ -33,6 +36,64 @@ html, body {
   max-width: 1024px;
   padding: 10px;
 }
+
+// -- flex
+
+.flex-layout {
+
+  &-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+}
+
+.row {
+  flex-direction: row;
+}
+
+.align {
+
+  &-start {
+    align-items: flex-start;
+  }
+  &-center {
+    align-items: center;
+  }
+  &-end {
+    align-items: flex-end;
+  }
+
+}
+
+.justify {
+
+  &-start {
+    justify-content: flex-start;
+  }
+  &-center {
+    justify-content: center;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+  &-around {
+    justify-content: space-around;
+  }
+  &-between {
+    justify-content: space-between;
+  }
+
+}
+
+.col {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+// -- flex end
+
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

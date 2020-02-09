@@ -7,6 +7,10 @@
       <CurrentWeather :current-weather="currentWeather" :current-time="currentTime" @refresh="refreshOpenWeatherMapWeather"/>
     </transition>
 
+    <transition name="fade">
+      <Forecast :forecast="forecast" />
+    </transition>
+
   </div>
 </template>
 
@@ -22,13 +26,14 @@
     name: 'Weather',
     components: {
       'Dropdown': () => import('../component/Dropdown'),
-      'CurrentWeather': () => import('./weather/CurrentWeather')
+      'CurrentWeather': () => import('./weather/CurrentWeather'),
+      'Forecast': () => import('./weather/Forecast')
     },
     mixins: [weatherHelperMixin],
 
     data () {
       return {
-        cityListKrJson: [],
+        cityListKrJson: []
       };
     },
 
@@ -55,15 +60,41 @@
       },
 
       getOpenWeatherMapForecast (targetCity) {
+        const name = targetCity.name;
+        const country = targetCity.country.toLowerCase();
+
+        // q : 'Incheon,kr',
+        const params = {
+          q: `${name},${country}`,
+          appid: API_KEY
+        };
+
         console.log(targetCity);
         console.log(sampleForecast);
+
+        this.setInitForecastState();
+
+        // sample test
+        this.setForecastAction({ forecast: sampleForecast });
+
+        // this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
+
+          // if (result.status === 200) {
+            //     console.log(result.data);
+            // this.setForecastAction({ forecast: { ...result.data } });
+          // }
+
+        // }).catch((err) => {
+        //   console.log(err);
+        //   return false;
+        // });
       },
 
       getOpenWeatherMapWeather (targetCity) {
         const name = targetCity.name;
         const country = targetCity.country.toLowerCase();
 
-        // // q : 'Incheon,kr',
+        // q : 'Incheon,kr',
         const params = {
           q: `${name},${country}`,
           appid: API_KEY
@@ -122,6 +153,7 @@
 
   #weather-wrap {
     height: 100%;
+    min-height: 81vh;
     padding: 25px 15px;
     background-color: $wrapBackgroundColor;
     display: flex;
