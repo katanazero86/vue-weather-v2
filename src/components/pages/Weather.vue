@@ -44,14 +44,6 @@
 
     created() {
       this.cityListKrJson = cityListKrJson;
-
-      //   const params = {
-      //   q: 'Incheon,kr',
-      //   appid: API_KEY
-      // }
-      //   this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
-      //     console.log(result);
-      //   });
     },
 
     methods: {
@@ -74,21 +66,16 @@
           appid: API_KEY
         };
 
-        console.log(targetCity);
-        console.log(sampleForecast);
-
         this.setInitForecastState();
 
         // sample test
         this.setForecastAction({forecast: sampleForecast});
 
-        // this.findOpenWeatherMap5DayForecast({ params }).then((result) => {
-
+        // this.findOpenWeatherMap5DayForecast({params}).then((result) => {
         // if (result.status === 200) {
         //     console.log(result.data);
-        // this.setForecastAction({ forecast: { ...result.data } });
+        //     this.setForecastAction({forecast: {...result.data}});
         // }
-
         // }).catch((err) => {
         //   console.log(err);
         //   return false;
@@ -111,10 +98,10 @@
         // sample test
         this.setCurrentWeatherAction({currentWeather: sampleCurrentWeather});
 
-        // this.findOpenWeatherMapCurrentWeather({ params }).then((result) => {
+        // this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
         //   if (result.status === 200) {
         //     console.log(result.data);
-        //     this.setCurrentWeatherAction({ currentWeather: { ...result.data } });
+        //     this.setCurrentWeatherAction({currentWeather: {...result.data}});
         //   }
         // }).catch((err) => {
         //   console.log(err);
@@ -138,7 +125,6 @@
 
         this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
           if (result.status === 200) {
-            console.log(result.data);
             this.setCurrentWeatherAction({currentWeather: {...result.data}});
           }
         }).catch((err) => {

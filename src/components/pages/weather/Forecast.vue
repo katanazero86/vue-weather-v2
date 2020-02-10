@@ -11,7 +11,7 @@
       <template v-for='(forecastList) in renderForecastList'>
         <div class="col-6 forecast-card">
           <div class="forecast-card-header">
-            {{ parseTimeStampToDate(forecastList[0].dt) }} Asia/Seoul
+            {{ parseTimeStampToDate(forecastList[0].dt) }} UTC
           </div>
           <div>
             <table>
@@ -41,12 +41,27 @@
         </div>
       </template>
     </div>
+
+    <div>
+      <TabMenu :nav-tab-menu-items="forecastNavTabMenuItems"
+               :active-tab-index="activeTabIndex"
+               @change="changeTabMenu"/>
+
+      <LineChart :target-chart-data="forecast.list" :visible-chart="visibleChart"/>
+
+    </div>
+
   </div>
 </template>
 
 <script>
+
   export default {
     name: 'Forecast',
+    components: {
+      TabMenu: () => import('../../component/TabMenu'),
+      LineChart: () => import('../../component/charts/LineChart'),
+    },
     props: {
       forecast: {type: Object, default: null},
       openWeatherIconBaseUrl: {type: String, default: ''}
@@ -54,7 +69,16 @@
 
     data() {
       return {
-        renderForecastList: null
+        renderForecastList: null,
+        forecastNavTabMenuItems: [
+          {name: '온도', label: 'temperature', index: 0},
+          {name: '바람', label: 'wind', index: 1}
+        ],
+        activeTabIndex: 0,
+        visibleChart: {
+          temperature: true,
+          wind: false
+        }
       };
     },
 
@@ -80,7 +104,6 @@
 
           if (resultForecastList.length > 0) {
             this.renderForecastList = resultForecastList;
-            console.log(this.renderForecastList);
           } else {
             this.renderForecastList = null;
           }
@@ -88,16 +111,27 @@
       },
 
       parseTimeStampToDate(timestamp) {
-        return this.$moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD(dddd)');
+        const utcDate = this.$moment.unix(timestamp).tz('Asia/Seoul').toDate().toUTCString();
+        return this.$moment.utc(utcDate).format('YYYY-MM-DD(dddd)');
       },
 
       parseTimeStampToDateHour(dateTimeString) {
         return this.$moment(dateTimeString).tz('Asia/Seoul').format('HH:mm');
+      },
+
+      changeTabMenu(targetItem) {
+        this.activeTabIndex = targetItem.index;
+        const visibleChartObj = {
+          temperature: false,
+          wind: false
+        };
+        visibleChartObj[targetItem.label] = true;
+        Object.assign(this.visibleChart, visibleChartObj);
       }
 
     }
 
-    };
+  }
 </script>
 
 <style lang="scss" scoped>

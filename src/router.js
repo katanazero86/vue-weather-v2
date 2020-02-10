@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
 
-import Weather from './components/contents/Weather'
+import Weather from './components/pages/Weather'
 
 const routes = [
   { path: '/', component: Weather }

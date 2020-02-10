@@ -65,7 +65,7 @@
       },
 
       parseTimeStampToDate(timestamp) {
-        return this.$moment(timestamp * 1000).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
+        return this.$moment(timestamp).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
       }
     }
 
