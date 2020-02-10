@@ -111,26 +111,7 @@
 
       refreshOpenWeatherMapWeather() {
         const targetCity = this.cityListKrJson.find(city => city.id === this.currentWeather.id);
-        const name = targetCity.name;
-        const country = targetCity.country.toLowerCase();
-
-        // // q : 'Incheon,kr',
-        const params = {
-          q: `${name},${country}`,
-          appid: API_KEY
-        };
-
-        this.setInitCurrentWeatherState();
-        this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
-
-        this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
-          if (result.status === 200) {
-            this.setCurrentWeatherAction({currentWeather: {...result.data}});
-          }
-        }).catch((err) => {
-          console.log(err);
-          return false;
-        });
+        this.executeOpenWeatherMapApi(targetCity);
       }
 
     }
