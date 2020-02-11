@@ -51,9 +51,12 @@ heroku --version
 heroku login
 heroku logs -a
 
-
-
 ```
+
+### 프로젝트 실행 결과
+
+![run](./image/run.PNG)
+
 
 ## Project setup
 ```
