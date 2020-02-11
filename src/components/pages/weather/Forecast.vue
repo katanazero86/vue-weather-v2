@@ -60,7 +60,7 @@
     name: 'Forecast',
     components: {
       TabMenu: () => import('../../component/TabMenu'),
-      LineChart: () => import('../../component/charts/LineChart'),
+      LineChart: () => import('../../component/charts/LineChart')
     },
     props: {
       forecast: {type: Object, default: null},
@@ -131,7 +131,7 @@
 
     }
 
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

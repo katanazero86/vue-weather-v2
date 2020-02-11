@@ -1,8 +1,8 @@
 <template>
     <div class="footer-wrap">
       <div class="footer-content">
-        <p>vue project - weather app</p>
-        <p>made by 배님.</p>
+        <p>vue project - weather app v2</p>
+        <p>made by zero86.</p>
       </div>
     </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name: 'Footer'
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -8,8 +8,8 @@
 
 <script>
 
-import Header from './components/header/Header'
-import Footer from './components/footer/Footer'
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 export default {
   name: 'app',
@@ -17,7 +17,7 @@ export default {
     Footer,
     Header
   }
-}
+};
 </script>
 
 <style lang="scss">

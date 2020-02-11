@@ -46,12 +46,12 @@
         name: 'Refresh',
 
       methods: {
-        onClick () {
+        onClick() {
           this.$emit('click');
         }
       }
 
-    }
+    };
 </script>
 
 <style scoped>

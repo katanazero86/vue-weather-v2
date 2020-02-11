@@ -13,4 +13,4 @@ export default {
   mutations,
   getters,
   state
-}
+};

@@ -7,4 +7,4 @@ export default {
     Vue.prototype.$axios = axios;
   }
 
-}
+};

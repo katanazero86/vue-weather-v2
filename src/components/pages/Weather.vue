@@ -69,17 +69,17 @@
         this.setInitForecastState();
 
         // sample test
-        this.setForecastAction({forecast: sampleForecast});
+        // this.setForecastAction({forecast: sampleForecast});
 
-        // this.findOpenWeatherMap5DayForecast({params}).then((result) => {
-        // if (result.status === 200) {
-        //     console.log(result.data);
-        //     this.setForecastAction({forecast: {...result.data}});
-        // }
-        // }).catch((err) => {
-        //   console.log(err);
-        //   return false;
-        // });
+        this.findOpenWeatherMap5DayForecast({params}).then((result) => {
+        if (result.status === 200) {
+            console.log(result.data);
+            this.setForecastAction({forecast: {...result.data}});
+        }
+        }).catch((err) => {
+          console.log(err);
+          return false;
+        });
       },
 
       getOpenWeatherMapWeather(targetCity) {

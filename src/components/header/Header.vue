@@ -16,7 +16,7 @@
 export default {
   name: 'Header',
 
-  data () {
+  data() {
     return {
       navItems: [
         {
@@ -33,7 +33,7 @@ export default {
 
   methods: {
 
-    movePath (targetPath) {
+    movePath(targetPath) {
       if (targetPath) {
         if (this.$route.path === targetPath) {
           location.reload();

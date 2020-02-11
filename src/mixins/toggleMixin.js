@@ -1,17 +1,17 @@
 export default {
 
-  data () {
+  data() {
     return {
       toggle: false
     };
   },
 
   methods: {
-    toggleDropdown () {
+    toggleDropdown() {
       this.toggle = !this.toggle;
     },
 
-    closeToggleDropdown (event) {
+    closeToggleDropdown(event) {
       if (!this.$el.contains(event.target)) {
         this.toggle = false;
       }

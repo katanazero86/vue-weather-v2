@@ -2,9 +2,9 @@ import Vue from 'vue';
 import App from './App.vue';
 
 // font-awesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {fas} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 // vue-router
 import VueRouter from 'vue-router';
@@ -17,7 +17,7 @@ import store from './store/index';
 import axiosPlugin from './plugins/axiosPlugin';
 
 // moment plugin
-import momentPlugin from './plugins/momentPlugin'
+import momentPlugin from './plugins/momentPlugin';
 
 Vue.use(axiosPlugin);
 Vue.use(momentPlugin);

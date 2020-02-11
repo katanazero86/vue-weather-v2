@@ -21,36 +21,36 @@ import toggleMixin from '../../mixins/toggleMixin';
 export default {
   name: 'dropdown',
   props: {
-    dropdownData: { type: Array,
+    dropdownData: {type: Array,
                     required: true,
-                    default () {
+                    default() {
                       return [];
                     }
                   },
-    dropdownTitle: { type: String, default: '' }
+    dropdownTitle: {type: String, default: ''}
   },
   mixins: [toggleMixin],
 
-  data () {
+  data() {
     return {
       selectedCity: null
     };
   },
 
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       document.body.addEventListener('click', this.closeToggleDropdown);
     });
   },
 
-  destroyed () {
+  destroyed() {
     document.body.removeEventListener('click', this.closeToggleDropdown);
   },
 
   methods: {
-    selectCity (targetCity) {
+    selectCity(targetCity) {
       this.selectedCity = targetCity;
-      this.$emit('select', { ...this.selectedCity });
+      this.$emit('select', {...this.selectedCity});
       this.toggle = false;
     }
   }

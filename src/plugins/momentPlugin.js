@@ -4,7 +4,7 @@ moment.tz.setDefault('Asia/Seoul');
 moment.locale('ko');
 
 export default {
-  install (Vue, options) {
+  install(Vue, options) {
     Vue.prototype.$moment = moment;
   }
-}
+};

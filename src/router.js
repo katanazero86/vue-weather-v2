@@ -1,14 +1,14 @@
-import VueRouter from 'vue-router'
+import VueRouter from 'vue-router';
 
-import Weather from './components/pages/Weather'
+import Weather from './components/pages/Weather';
 
 const routes = [
-  { path: '/', component: Weather }
-]
+  {path: '/', component: Weather}
+];
 
 const router = new VueRouter({
   mode: 'history',
   routes
-})
+});
 
-export default router
+export default router;
