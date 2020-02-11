@@ -96,17 +96,16 @@
         this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
 
         // sample test
-        this.setCurrentWeatherAction({currentWeather: sampleCurrentWeather});
+        // this.setCurrentWeatherAction({currentWeather: sampleCurrentWeather});
 
-        // this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
-        //   if (result.status === 200) {
-        //     console.log(result.data);
-        //     this.setCurrentWeatherAction({currentWeather: {...result.data}});
-        //   }
-        // }).catch((err) => {
-        //   console.log(err);
-        //   return false;
-        // });
+        this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
+          if (result.status === 200) {
+            this.setCurrentWeatherAction({currentWeather: {...result.data}});
+          }
+        }).catch((err) => {
+          console.log(err);
+          return false;
+        });
       },
 
       refreshOpenWeatherMapWeather() {

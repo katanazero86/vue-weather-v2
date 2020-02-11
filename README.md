@@ -24,6 +24,31 @@ https://openweathermap.org/api
 
 ```
 
+- cloud flare workers
+
+```
+
+Requests today 100,000 (하루 request 횟수)
+worker subdomain : zero86.workers.dev
+
+- Install Wrangler
+npm install -g @cloudflare/wrangler
+설치가 되었으면, 확인을 위해
+wrangler --version
+
+- Authenticate Wrangler with your Cloudflare account
+wrangler config
+
+- Start a project using a template
+wrangler generate my-project https://github.com/cloudflare/worker-template
+
+- To test your Worker, start the preview:
+wrangler preview
+
+
+
+```
+
 ## Project setup
 ```
 npm install
