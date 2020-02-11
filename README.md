@@ -24,26 +24,20 @@ https://openweathermap.org/api
 
 ```
 
-- cloud flare workers
+- heroku deploy
 
 ```
 
-Requests today 100,000 (하루 request 횟수)
-worker subdomain : zero86.workers.dev
+npm install express serve-static --save
 
-- Install Wrangler
-npm install -g @cloudflare/wrangler
-설치가 되었으면, 확인을 위해
-wrangler --version
+server.js 파일 생성
 
-- Authenticate Wrangler with your Cloudflare account
-wrangler config
+package.json npm 스크립트 추가
+"start": "node server.js" 
 
-- Start a project using a template
-wrangler generate my-project https://github.com/cloudflare/worker-template
+test : http://localhost:8080/
 
-- To test your Worker, start the preview:
-wrangler preview
+create heroku app
 
 
 
