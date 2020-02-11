@@ -73,7 +73,7 @@
 
         this.findOpenWeatherMap5DayForecast({params}).then((result) => {
         if (result.status === 200) {
-            console.log(result.data);
+            // console.log(result.data);
             this.setForecastAction({forecast: {...result.data}});
         }
         }).catch((err) => {
