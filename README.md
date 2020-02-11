@@ -45,6 +45,13 @@ https://<YOUR-PROJECT-NAME>.herokuapp.com
 deployed to Heroku
 https://zero86.herokuapp.com/ 
 
+- heroku cli
+npm install -g heroku
+heroku --version
+heroku login
+heroku logs -a
+
+
 
 ```
 
