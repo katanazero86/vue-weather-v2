@@ -12,6 +12,7 @@
           - openweathermap API를 이용하여 날씨 웹앱 작성(https://openweathermap.org/)<br>
           - 예전에 만들어본적이 있으나 새로 v2로 작성<br>
           - heroku 를 이용하여 배포 및 서비스<br>
+          - 부족한점 또는 코드 및 개선사항 있으면 언제든지 아래 저장소 방문하셔서 새로운 이슈 생성해 주시면 공부할 때 작업하겠습니다. 감사합니다!<br>
           - https://github.com/katanazero86/vue-weather-v2<br>
         </p>
       </section>
