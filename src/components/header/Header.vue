@@ -58,6 +58,8 @@ export default {
     position: sticky;
     top: 0;
     z-index: 2;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
 
     background-color: $wrapHeaderBackgroundColor;
     color: $fontColorBlackLight;

@@ -77,6 +77,7 @@ export default {
       cursor: pointer;
       border: solid 1px #e7e7e7;
       background-color: #ffffff;
+      border: 1px solid #777;
       padding: 0 10px;
       height: 42px;
       display: flex;
@@ -102,7 +103,7 @@ export default {
       top: 48px;
       left: 5px;
       right: 5px;
-      border: solid 1px #e7e7e7;
+      border: 1px solid #777;
       background-color: #ffffff;
       padding: 10px;
       margin: 0;

@@ -18,8 +18,8 @@ export default {
   @import '@/assets/scss/app.scss';
 
   .footer-wrap {
-    border-top : 2px solid $bgColorBlack-light;
     height: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
     background-color: #ebebeb;
     color: $fontColorBlack;
     font-size: $fontSize13;

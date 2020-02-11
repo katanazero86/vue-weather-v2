@@ -123,8 +123,7 @@
   @import '@/assets/scss/app.scss';
 
   #weather-wrap {
-    height: 100%;
-    min-height: 81vh;
+    min-height: 100%;
     padding: 25px 15px;
     background-color: $wrapBackgroundColor;
     display: flex;

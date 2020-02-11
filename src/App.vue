@@ -25,6 +25,7 @@ export default {
 
   #app {
     height: 100%;
+    overflow: auto;
   }
 
 </style>
