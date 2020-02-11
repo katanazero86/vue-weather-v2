@@ -38,7 +38,12 @@ package.json npm 스크립트 추가
 test : http://localhost:8080/
 
 create heroku app
+https://www.heroku.com/
 
+app name : zero86
+https://<YOUR-PROJECT-NAME>.herokuapp.com
+deployed to Heroku
+https://zero86.herokuapp.com/ 
 
 
 ```
