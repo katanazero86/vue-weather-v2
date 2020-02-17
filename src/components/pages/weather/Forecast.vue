@@ -104,10 +104,6 @@
       };
     },
 
-    mounted() {
-      document.getElementById('app').scrollTop = 0;
-    },
-
     // beforeUpdate() {
     //   if (this.forecast) {
     //     this.processForecastList();

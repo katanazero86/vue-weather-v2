@@ -25,8 +25,13 @@
 
 <script>
     export default {
-        name: "Intro"
-    }
+        name: 'Intro',
+
+      mounted() {
+        document.getElementById('app').scrollTop = 0;
+      }
+
+    };
 </script>
 
 <style lang="scss" scoped>
