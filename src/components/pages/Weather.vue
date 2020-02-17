@@ -46,6 +46,14 @@
       this.cityListKrJson = cityListKrJson;
     },
 
+    mounted() {
+      document.getElementById('app').scrollTop = 0;
+    },
+
+    destroyed() {
+      this.setInitState();
+    },
+
     methods: {
 
       executeOpenWeatherMapApi(targetCity) {

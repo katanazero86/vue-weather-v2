@@ -58,7 +58,6 @@ export default {
     position: sticky;
     top: 0;
     z-index: 2;
-    height: 60px;
     box-shadow: 0 2px 5px rgba(0,0,0,.1);
 
     background-color: $wrapHeaderBackgroundColor;
@@ -85,9 +84,10 @@ export default {
         min-width: 100%;
 
         > div {
-          padding: 20px;
+          padding: 15px;
           margin: 0 10px;
           cursor: pointer;
+          font-family: 'Noto Sans KR', sans-serif !important;
         }
 
         > div:hover {

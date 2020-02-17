@@ -52,7 +52,7 @@
       border-bottom: 1px solid rgba(26,54,126,0.125);
 
       h2 {
-        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+        font-family: 'Noto Sans KR', sans-serif !important;
         font-weight: 500;
       }
 
@@ -63,6 +63,7 @@
       p {
         font-size: 13px;
         word-break: keep-all;
+        font-family: 'Noto Sans KR', sans-serif !important;
       }
 
     }

@@ -67,29 +67,8 @@
       openWeatherIconBaseUrl: {type: String, default: ''}
     },
 
-    data() {
-      return {
-        renderForecastList: null,
-        forecastNavTabMenuItems: [
-          {name: '온도', label: 'temperature', index: 0},
-          {name: '바람', label: 'wind', index: 1}
-        ],
-        activeTabIndex: 0,
-        visibleChart: {
-          temperature: true,
-          wind: false
-        }
-      };
-    },
-
-    beforeUpdate() {
-      if (this.forecast) {
-        this.processForecastList();
-      }
-    },
-
-    methods: {
-      processForecastList() {
+    computed: {
+      renderForecastList() {
         if (this.forecast) {
           const resultForecastList = [];
           const targetForecast = {...this.forecast};
@@ -102,13 +81,60 @@
             resultForecastList.push(resultForecastFilter);
           });
 
-          if (resultForecastList.length > 0) {
-            this.renderForecastList = resultForecastList;
-          } else {
-            this.renderForecastList = null;
-          }
+          return resultForecastList;
+
         }
+
+        return [];
       },
+    },
+
+    data() {
+      return {
+        // renderForecastList: null,
+        forecastNavTabMenuItems: [
+          {name: '온도', label: 'temperature', index: 0},
+          {name: '바람', label: 'wind', index: 1}
+        ],
+        activeTabIndex: 0,
+        visibleChart: {
+          temperature: true,
+          wind: false
+        }
+      };
+    },
+
+    mounted() {
+      document.getElementById('app').scrollTop = 0;
+    },
+
+    // beforeUpdate() {
+    //   if (this.forecast) {
+    //     this.processForecastList();
+    //   }
+    // },
+
+    methods: {
+      // processForecastList() {
+      //   if (this.forecast) {
+      //     const resultForecastList = [];
+      //     const targetForecast = {...this.forecast};
+      //
+      //     const dtTxt = targetForecast.list.map(forecast => forecast.dt_txt.split(' ')[0]);
+      //     const dtTxtSet = new Set(dtTxt);
+      //
+      //     dtTxtSet.forEach(dtTxt => {
+      //       const resultForecastFilter = targetForecast.list.filter(forecast => forecast.dt_txt.split(' ')[0] === dtTxt);
+      //       resultForecastList.push(resultForecastFilter);
+      //     });
+      //
+      //     if (resultForecastList.length > 0) {
+      //       this.renderForecastList = resultForecastList;
+      //     } else {
+      //       this.renderForecastList = null;
+      //     }
+      //   }
+      // },
 
       parseTimeStampToDate(timestamp) {
         const utcDate = this.$moment.unix(timestamp).tz('Asia/Seoul').toDate().toUTCString();

@@ -1,5 +1,7 @@
 // web font
 @import url('https://fonts.googleapis.com/css?family=Lexend+Giga|Sunflower:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 @import './mixin';
 @import './variable';
@@ -7,7 +9,7 @@
 //global
 
 * {
-  font-family: 'Lexend Giga', 'Sunflower', sans-serif;
+  font-family: 'Lexend Giga', 'Sunflower', 'Roboto', 'Noto Sans KR', sans-serif;
 }
 
 p {
@@ -109,6 +111,12 @@ html, body {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
+}
+
+.col-auto {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
 }
 
 .col-6 {

@@ -1,8 +1,12 @@
 <template>
     <div class="footer-wrap">
-      <div class="footer-content">
-        <p>vue project - weather app v2</p>
-        <p>made by zero86.</p>
+      <div class="footer-content flex-layout-wrap justify-content-between align-content-start row">
+        <div class="col">
+          <p><b>vue project</b>-weather app v2</p>
+        </div>
+        <div class="col">
+          <p>made by zero86</p>
+        </div>
       </div>
     </div>
 </template>
@@ -18,7 +22,7 @@ export default {
   @import '@/assets/scss/app.scss';
 
   .footer-wrap {
-    height: 60px;
+
     box-shadow: 0 2px 5px rgba(0,0,0,.1);
     background-color: #ebebeb;
     color: $fontColorBlack;
@@ -30,17 +34,19 @@ export default {
     align-items: center;
 
     .footer-content {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: space-between;
-      flex-grow: 1;
-      padding: 0 15px;
+      width: 100%;
+      padding: 8px 0;
 
       p {
         margin: 0;
-        padding: 0;
+        padding: 15px;
+        white-space: nowrap;
+        font-family: 'Noto Sans KR', sans-serif !important;
+
+        b {
+          font-family: 'Noto Sans KR', sans-serif !important;
+        }
+
       }
 
     }
