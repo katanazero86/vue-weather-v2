@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <Header/>
-    <router-view/>
+      <router-view/>
     <Footer/>
   </div>
 </template>
 
 <script>
 
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/pages/header/Header';
+import Footer from './components/pages/footer/Footer';
 
 export default {
   name: 'app',

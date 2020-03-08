@@ -8,7 +8,7 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 // vue-router
 import VueRouter from 'vue-router';
-import router from './router';
+import router from './routes/router';
 
 // vuex
 import store from './store/index';

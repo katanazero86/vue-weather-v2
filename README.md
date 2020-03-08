@@ -53,6 +53,31 @@ heroku logs -a
 
 ```
 
+### 구조 및 규약
+
+```
+/src
+  /assets : icon, image, scss 자원
+  /components
+    /component : 특정 기능을 하는 컴포넌트
+    /pages : page 를 구성하는 컴포넌트 
+  /mixins : 믹스인
+  /plugins : 플러그인
+  /routes : 라우터
+  /store : 스토어(상태관리)
+
+- 컴포넌트(*.vue)명은 대문자로 시작
+- 글로벌 CSS 작성 -> /src/assets/scss/app.scss
+- 변수명은 소문자로 시작(camelCase)
+- 컴포넌트 props kebap-case 사용
+- 컴포넌트에서 API 조회시, 메서드명
+  조회 : find**
+  생성 : create**
+  수정 : update**
+  삭제 : delete**
+
+```
+
 ### 프로젝트 실행 결과
 
 ![run](./image/run.PNG)

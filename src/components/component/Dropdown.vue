@@ -19,7 +19,7 @@
 import toggleMixin from '../../mixins/toggleMixin';
 
 export default {
-  name: 'dropdown',
+  name: 'Dropdown',
   props: {
     dropdownData: {type: Array,
                     required: true,
