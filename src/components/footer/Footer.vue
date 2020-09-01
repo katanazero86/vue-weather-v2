@@ -1,4 +1,4 @@
-<template>
+<template functional>
     <footer class="footer-wrap">
       <section class="footer-body">
         <div class="footer-content">

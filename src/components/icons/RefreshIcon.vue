@@ -1,6 +1,6 @@
-<template>
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 437.716 437.716"
-       xml:space="preserve" @click="onClick" :style="color && {fill : `${color}`}">
+<template functional>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 437.716 437.716"
+       xml:space="preserve"  @click="listeners.click" :style="props.color && {fill : `${props.color}`}">
 <g id="XMLID_7_">
 	<path id="XMLID_8_" d="M436.599,179.224c-2.297-5.615-7.75-9.294-13.816-9.321l-51.272-0.229
 		c-10.809-33.509-32.542-63.264-62.947-83.777c-34.538-23.302-76.159-32.201-117.196-25.057
@@ -49,15 +49,14 @@
       color: {type: String, default: 'black'} // 컬러코드 입력
     },
 
-    methods: {
-      onClick() {
-        this.$emit('click');
-      }
-    },
-
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  svg {
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
 </style>

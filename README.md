@@ -60,4 +60,9 @@
   수정 : update**
   삭제 : delete**
 
+- Functional component : 일반적인 컴포넌트와 달리 인스턴스를 생성하지 않고 렌더링만 실행(상태를 가질 수 없으며, 라이프사이클 메서드 사용 불가)
+  RefreshIcon.vue
+  ForecastCard.vue
+  Footer.vue
+
 ```

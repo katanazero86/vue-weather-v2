@@ -87,13 +87,6 @@
         align-items: center;
       }
 
-      svg {
-        padding: 10px;
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-      }
-
       .weather-current-header-info {
         font-family: 'Roboto', sans-serif;
         font-weight: 600;

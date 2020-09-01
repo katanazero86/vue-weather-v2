@@ -1,12 +1,12 @@
-<template>
+<template functional>
   <div class="col-6 col-xs-12 forecast-card-wrap">
     <div class="forecast-card-body">
       <div class="forecast-card-header">
-                {{ forecastList[0].dt | parseTimeStampToDateString }}
+                {{ props.forecastList[0].dt | parseTimeStampToDateString }}
       </div>
       <table>
         <tbody>
-                <tr v-for="(forecast, index) in forecastList">
+                <tr v-for="(forecast, index) in props.forecastList">
                   <td>
                     <div class="flex-layout-nowrap align-item-center">
                       <div class="col-6">
@@ -14,7 +14,7 @@
                         <span> {{forecast.weather[0].description}}</span>
                       </div>
                       <div class="flex-layout-nowrap align-item-center col-6">
-                        <img :src="`${openWeatherIconBaseUrlState}/${forecast.weather[0].icon}@2x.png`" width="50" height="50"/>
+                        <img :src="`${props.openWeatherIconBaseUrlState}/${forecast.weather[0].icon}@2x.png`" width="50" height="50"/>
                         <span>{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
                       </div>
                     </div>
