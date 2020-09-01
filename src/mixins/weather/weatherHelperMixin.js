@@ -21,15 +21,14 @@ export default {
       findOpenWeatherMap5DayForecast: `${STORE_NAMESPACE}/findOpenWeatherMap5DayForecast`,
       setCurrentWeatherAction: `${STORE_NAMESPACE}/setCurrentWeatherAction`,
       setForecastAction: `${STORE_NAMESPACE}/setForecastAction`,
+      initStateAction: `${STORE_NAMESPACE}/initStateAction`
     }),
 
     ...mapMutations({
       setCurrentWeather: `${STORE_NAMESPACE}/setCurrentWeather`,
       setForecast: `${STORE_NAMESPACE}/setForecast`,
       setCurrentTime: `${STORE_NAMESPACE}/setCurrentTime`,
-      setInitState: `${STORE_NAMESPACE}/setInitState`,
-      setInitCurrentWeatherState: `${STORE_NAMESPACE}/setInitCurrentWeatherState`,
-      setInitForecastState: `${STORE_NAMESPACE}/setInitForecastState`,
+      initState: `${STORE_NAMESPACE}/initState`,
     })
   }
 

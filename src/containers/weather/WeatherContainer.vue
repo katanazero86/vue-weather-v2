@@ -7,7 +7,7 @@
       <CurrentWeather :current-weather="currentWeather"
                       :current-time="currentTime"
                       :open-weather-icon-base-url="openWeatherIconBaseUrl"
-                      @refresh="refreshOpenWeatherMapWeather"/>
+                      @refresh="refreshWeather"/>
     </transition>
 
     <transition name="fade">
@@ -58,8 +58,7 @@
       selectCity(targetCity) {
 
         this.selectedCity = {...targetCity};
-        this.setInitForecastState();
-        this.setInitCurrentWeatherState();
+        this.initStateAction();
         // current weather data
         this.getOpenWeatherMapWeather({...targetCity});
         // 5 day / 3 hour forecast
@@ -85,7 +84,7 @@
         this.findOpenWeatherMap5DayForecast({params}).catch(err => console.log(err));
       },
 
-      refreshOpenWeatherMapWeather() {
+      refreshWeather() {
         this.getOpenWeatherMapWeather({...this.selectedCity});
         this.getOpenWeatherMapForecast({...this.selectedCity});
       }

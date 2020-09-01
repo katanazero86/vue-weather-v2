@@ -48,16 +48,9 @@ export default {
     commit('setForecast', payload);
   },
 
-  initCurrentWeatherAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
-
+  initStateAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+    commit(`initState`);
   },
 
-  initForecastAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
-
-  },
-
-  initCurrentTime({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
-
-  },
 
 };
