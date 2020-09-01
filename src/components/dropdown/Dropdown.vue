@@ -8,7 +8,10 @@
     <div class="dropdown-content" v-if="toggle">
       <ul v-if="dropdownData.length > 0">
         <template v-for="(data, index) in dropdownData">
-          <li @click="selectCity(data)" :key="index" :class="[selectedCity ? (selectedCity.name == data.name ? 'selected-item' : '') : '']">{{data.name}}</li>
+          <li @click="selectCity(data)" :key="index"
+              :class="[selectedCity ? (selectedCity.name == data.name ? 'selected-item' : '') : '']">
+            {{data.name}}
+          </li>
         </template>
       </ul>
     </div>
@@ -16,46 +19,41 @@
 </template>
 
 <script>
-import toggleMixin from '../../mixins/toggleMixin';
+  import toggleMixin from '../../mixins/toggleMixin';
 
-export default {
-  name: 'Dropdown',
-  props: {
-    dropdownData: {type: Array,
-                    required: true,
-                    default() {
-                      return [];
-                    }
-                  },
-    dropdownTitle: {type: String, default: ''}
-  },
-  mixins: [toggleMixin],
+  export default {
+    name: 'Dropdown',
+    props: {
+      dropdownTitle: {type: String, default: '',},
+      dropdownData: {type: Array, default: [],},
+    },
+    mixins: [toggleMixin],
 
-  data() {
-    return {
-      selectedCity: null
-    };
-  },
+    data() {
+      return {
+        selectedCity: null
+      }
+    },
 
-  mounted() {
-    this.$nextTick(() => {
-      document.body.addEventListener('click', this.closeToggleDropdown);
-    });
-  },
+    mounted() {
+      this.$nextTick(() => {
+        document.body.addEventListener('click', this.closeToggleDropdown);
+      });
+    },
 
-  destroyed() {
-    document.body.removeEventListener('click', this.closeToggleDropdown);
-  },
+    beforeDestroy() {
+      document.body.removeEventListener('click', this.closeToggleDropdown);
+    },
 
-  methods: {
-    selectCity(targetCity) {
-      this.selectedCity = targetCity;
-      this.$emit('select', {...this.selectedCity});
-      this.toggle = false;
+    methods: {
+      selectCity(targetCity) {
+        this.selectedCity = targetCity;
+        this.$emit('select', {...this.selectedCity});
+        this.toggle = false;
+      }
     }
-  }
 
-};
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -93,6 +91,7 @@ export default {
       .dropdown-arrow-down {
 
       }
+
       .dropdown-arrow-up {
 
       }

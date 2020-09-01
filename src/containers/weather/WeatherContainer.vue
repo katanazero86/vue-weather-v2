@@ -1,7 +1,7 @@
 <template>
   <div id="weather-wrap">
 
-    <Dropdown dropdown-title="원하시는 도시를 선택해주세요." :dropdown-data="cityListKrJson" @select="executeOpenWeatherMapApi"/>
+    <Dropdown dropdown-title="원하시는 도시를 선택해주세요." :dropdown-data="cityListKrJson" @select="selectCity"/>
 
     <transition name="fade">
       <CurrentWeather :current-weather="currentWeather"
@@ -21,8 +21,6 @@
 
 <script>
   import cityListKrJson from '../../../city.list.kr.json';
-  import sampleCurrentWeather from '../../../sample.current.weather.json';
-  import sampleForecast from '../../../sample.forecast.json';
   import weatherHelperMixin from '../../mixins/weather/weatherHelperMixin';
 
   const API_KEY = process.env.VUE_APP_API_KEY;
@@ -38,7 +36,8 @@
 
     data() {
       return {
-        cityListKrJson: []
+        cityListKrJson: [],
+        selectedCity: null,
       };
     },
 
@@ -50,75 +49,45 @@
       document.getElementById('app').scrollTop = 0;
     },
 
-    destroyed() {
+    beforeDestroyed() {
       this.setInitState();
     },
 
     methods: {
 
-      executeOpenWeatherMapApi(targetCity) {
+      selectCity(targetCity) {
+
+        this.selectedCity = {...targetCity};
+        this.setInitForecastState();
+        this.setInitCurrentWeatherState();
         // current weather data
         this.getOpenWeatherMapWeather({...targetCity});
-
         // 5 day / 3 hour forecast
         this.getOpenWeatherMapForecast({...targetCity});
       },
 
-      getOpenWeatherMapForecast(targetCity) {
-        const name = targetCity.name;
-        const country = targetCity.country.toLowerCase();
-
+      makeOpenWeatherMapParams(targetCity) {
         // q : 'Incheon,kr',
-        const params = {
-          q: `${name},${country}`,
-          appid: API_KEY
-        };
-
-        this.setInitForecastState();
-
-        // sample test
-        // this.setForecastAction({forecast: sampleForecast});
-
-        this.findOpenWeatherMap5DayForecast({params}).then((result) => {
-        if (result.status === 200) {
-            // console.log(result.data);
-            this.setForecastAction({forecast: {...result.data}});
+        return {
+          q: `${targetCity.name},${targetCity.country.toLowerCase()}`,
+          appid: API_KEY,
         }
-        }).catch((err) => {
-          console.log(err);
-          return false;
-        });
       },
 
       getOpenWeatherMapWeather(targetCity) {
-        const name = targetCity.name;
-        const country = targetCity.country.toLowerCase();
-
-        // q : 'Incheon,kr',
-        const params = {
-          q: `${name},${country}`,
-          appid: API_KEY
-        };
-
-        this.setInitCurrentWeatherState();
+        const params = this.makeOpenWeatherMapParams(targetCity);
         this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
+        this.findOpenWeatherMapCurrentWeather({params}).catch(err => console.log(err));
+      },
 
-        // sample test
-        // this.setCurrentWeatherAction({currentWeather: sampleCurrentWeather});
-
-        this.findOpenWeatherMapCurrentWeather({params}).then((result) => {
-          if (result.status === 200) {
-            this.setCurrentWeatherAction({currentWeather: {...result.data}});
-          }
-        }).catch((err) => {
-          console.log(err);
-          return false;
-        });
+      getOpenWeatherMapForecast(targetCity) {
+        const params = this.makeOpenWeatherMapParams(targetCity);
+        this.findOpenWeatherMap5DayForecast({params}).catch(err => console.log(err));
       },
 
       refreshOpenWeatherMapWeather() {
-        const targetCity = this.cityListKrJson.find(city => city.id === this.currentWeather.id);
-        this.executeOpenWeatherMapApi(targetCity);
+        this.getOpenWeatherMapWeather({...this.selectedCity});
+        this.getOpenWeatherMapForecast({...this.selectedCity});
       }
 
     }

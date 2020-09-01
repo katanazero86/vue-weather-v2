@@ -6,12 +6,17 @@ export default {
 
   // https://openweathermap.org/current
   // https://api.openweathermap.org/data/2.5/weather
-  findOpenWeatherMapCurrentWeather(context, payload) {
+  async findOpenWeatherMapCurrentWeather({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
     try {
-      return axios.get(`${weatherApiBaseUrl}/weather`, {params: payload.params});
+      const result = await axios.get(`${weatherApiBaseUrl}/weather`, {params: payload.params});
+      if (result.status === 200) {
+        dispatch(`setCurrentWeatherAction`, {currentWeather: {...result.data}});
+      } else {
+        throw(`${result.status} : error`);
+      }
     } catch (err) {
       return new Promise((resolve, reject) => {
-        console.log('findOpenWeatherMapWeather exception..');
+        console.log('findOpenWeatherMapCurrentWeather exception..');
         reject(err);
       });
     }
@@ -19,9 +24,14 @@ export default {
 
   // https://openweathermap.org/forecast5
   // https://api.openweathermap.org/data/2.5/forecast
-  findOpenWeatherMap5DayForecast(context, payload) {
+  async findOpenWeatherMap5DayForecast({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
     try {
-      return axios.get(`${weatherApiBaseUrl}/forecast`, {params: payload.params});
+      const result = await axios.get(`${weatherApiBaseUrl}/forecast`, {params: payload.params});
+      if(result.status === 200) {
+        dispatch(`setForecastAction`, {forecast: {...result.data}});
+      } else {
+        throw(`${result.status} : error`);
+      }
     } catch (err) {
       return new Promise((resolve, reject) => {
         console.log('findOpenWeatherMap5DayForecast exception..');
@@ -30,12 +40,24 @@ export default {
     }
   },
 
-  setCurrentWeatherAction(context, payload) {
-    context.commit('setCurrentWeather', payload);
+  setCurrentWeatherAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+    commit('setCurrentWeather', payload);
   },
 
-  setForecastAction(context, payload) {
-    context.commit('setForecast', payload);
-  }
+  setForecastAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+    commit('setForecast', payload);
+  },
+
+  initCurrentWeatherAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+
+  },
+
+  initForecastAction({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+
+  },
+
+  initCurrentTime({commit, dispatch, getters, rootGetters, rootState, state}, payload) {
+
+  },
 
 };
