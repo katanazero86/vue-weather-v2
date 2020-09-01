@@ -26,12 +26,11 @@
 </template>
 
 <script>
-
-  import ForecastCard from "../../cards/ForecastCard";
+  
   export default {
     name: 'Forecast',
     components: {
-      ForecastCard,
+      ForecastCard : () => import('../../cards/ForecastCard'),
       TabMenu: () => import('../../tabmenu/TabMenu'),
       LineChart: () => import('../../charts/LineChart')
     },
@@ -77,15 +76,6 @@
     },
 
     methods: {
-
-      // parseTimeStampToDate(timestamp) {
-      //   const utcDate = this.$moment.unix(timestamp).tz('Asia/Seoul').toDate().toUTCString();
-      //   return this.$moment.utc(utcDate).format('YYYY-MM-DD dddd');
-      // },
-      //
-      // parseTimeStampToDateHour(dateTimeString) {
-      //   return this.$moment(dateTimeString).tz('Asia/Seoul').format('HH:mm');
-      // },
 
       changeTabMenu(targetItem) {
         this.activeTabIndex = targetItem.index;
