@@ -1,20 +1,20 @@
 export default {
   setCurrentWeather(state, payload) {
-    state.currentWeather = payload.currentWeather;
+    state.currentWeatherState = payload.currentWeather;
   },
 
   setForecast(state, payload) {
-    state.forecast = payload.forecast;
+    state.forecastState = payload.forecast;
   },
 
   setCurrentTime(state, payload) {
-    state.currentTime = payload.currentTime;
+    state.currentTimeState = payload.currentTime;
   },
 
   initState(state) {
-    state.currentWeather = null;
-    state.forecast = null;
-    state.currentTime = null;
+    state.currentWeatherState = null;
+    state.forecastState = null;
+    state.currentTimeState = null;
   },
 
 };

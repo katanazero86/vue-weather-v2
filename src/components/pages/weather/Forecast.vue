@@ -1,24 +1,24 @@
 <template>
-  <div class="wrap weather-forecast-wrap" v-if="forecast">
+  <div class="wrap weather-forecast-wrap" v-if="forecastState">
     <div class="weather-forecast-header">
       <div class="header-content">
         <h2>
-          Hourly weather and forecasts in {{ forecast.city.name }}
+          Hourly weather and forecasts in {{ forecastState.city.name }}
         </h2>
       </div>
     </div>
     <div class="flex-layout-wrap row align-item-start justify-content-between weather-forecast-content">
       <template v-for='(forecastList, index) in renderForecastList'>
-        <ForecastCard :forecastList="forecastList" :openWeatherIconBaseUrl="openWeatherIconBaseUrl"/>
+        <ForecastCard :forecastList="forecastList" :openWeatherIconBaseUrlState="openWeatherIconBaseUrlState"/>
       </template>
     </div>
 
     <div>
-      <TabMenu :nav-tab-menu-items="forecastNavTabMenuItems"
-               :active-tab-index="activeTabIndex"
+      <TabMenu :navTabMenuItems="forecastNavTabMenuItems"
+               :activeTabIndex="activeTabIndex"
                @change="changeTabMenu"/>
 
-      <LineChart :target-chart-data="forecast.list" :visible-chart="visibleChart"/>
+      <LineChart :targetChartData="forecastState.list" :visibleChart="visibleChart"/>
 
     </div>
 
@@ -35,15 +35,15 @@
       LineChart: () => import('../../charts/LineChart')
     },
     props: {
-      forecast: {type: Object, default: null},
-      openWeatherIconBaseUrl: {type: String, default: ''}
+      forecastState: {type: Object, default: null},
+      openWeatherIconBaseUrlState: {type: String, default: ''}
     },
 
     computed: {
       renderForecastList() {
-        if (this.forecast) {
+        if (this.forecastState) {
           const resultForecastList = [];
-          const targetForecast = {...this.forecast};
+          const targetForecast = {...this.forecastState};
 
           const dtTxt = targetForecast.list.map(forecast => forecast.dt_txt.split(' ')[0]);
           const dtTxtSet = new Set(dtTxt);

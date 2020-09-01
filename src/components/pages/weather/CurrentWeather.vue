@@ -1,21 +1,22 @@
 <template>
-  <div class="wrap weather-current-wrap" v-if="currentWeather">
+  <div class="wrap weather-current-wrap" v-if="currentWeatherState">
     <div class="weather-current-header">
       <div class="header-content">
         <h2>
-          Weather in {{currentWeather.name}}
+          Weather in {{currentWeatherState.name}}
         </h2>
-        <Refresh @click="refresh" color="white"/>
+        <RefreshIcon @click="refresh" color="white"/>
       </div>
       <div class="header-time">
-        조회시간: {{currentTime}}
+        조회시간: {{currentTimeState}}
       </div>
       <div class="weather-current-header-info">
         <div>
-          <img :src="`${openWeatherIconBaseUrl}/${currentWeather.weather[0].icon}@2x.png`" width="85" height="85"/>
-          <span class="weather-current-temperature">{{(currentWeather.main.temp - 273.15).toFixed(1)}} °C</span>
+          <img :src="`${openWeatherIconBaseUrlState}/${currentWeatherState.weather[0].icon}@2x.png`" width="85"
+               height="85"/>
+          <span class="weather-current-temperature">{{(currentWeatherState.main.temp - 273.15).toFixed(1)}} °C</span>
         </div>
-        <p>{{currentWeather.weather[0].main}}</p>
+        <p>{{currentWeatherState.weather[0].main}}</p>
       </div>
     </div>
     <div class="weather-current-content">
@@ -32,14 +33,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-if="currentWeather != null">
-          <td>{{currentWeather.wind.speed}} m/s | {{currentWeather.wind.deg}} deg</td>
-          <td>{{currentWeather.clouds.all}} %</td>
-          <td>{{currentWeather.main.pressure}} hpa</td>
-          <td>{{currentWeather.main.humidity}} %</td>
-          <td>{{parseTimeStampToDate(currentWeather.sys.sunrise) }}</td>
-          <td>{{parseTimeStampToDate(currentWeather.sys.sunset) }}</td>
-          <td>{{`[${currentWeather.coord.lat}, ${currentWeather.coord.lon}]`}}</td>
+        <tr v-if="currentWeatherState != null">
+          <td>{{currentWeatherState.wind.speed}} m/s | {{currentWeatherState.wind.deg}} deg</td>
+          <td>{{currentWeatherState.clouds.all}} %</td>
+          <td>{{currentWeatherState.main.pressure}} hpa</td>
+          <td>{{currentWeatherState.main.humidity}} %</td>
+          <td>{{currentWeatherState.sys.sunrise | parseTimeStampToDateString }}</td>
+          <td>{{currentWeatherState.sys.sunset | parseTimeStampToDateString }}</td>
+          <td>{{`[${currentWeatherState.coord.lat}, ${currentWeatherState.coord.lon}]`}}</td>
         </tr>
         </tbody>
       </table>
@@ -50,23 +51,21 @@
 <script>
   export default {
     name: 'CurrentWeather',
+
     components: {
-      'Refresh': () => import('../../icons/Refresh')
+      'RefreshIcon': () => import('../../icons/RefreshIcon')
     },
+
     props: {
-      currentWeather: {type: Object, default: null},
-      currentTime: {type: String, default: ''},
-      openWeatherIconBaseUrl: {type: String, default: ''}
+      currentWeatherState: {type: Object, default: null},
+      currentTimeState: {type: String, default: ''},
+      openWeatherIconBaseUrlState: {type: String, default: ''}
     },
 
     methods: {
       refresh() {
         this.$emit('refresh');
       },
-
-      parseTimeStampToDate(timestamp) {
-        return this.$moment.unix(timestamp).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
-      }
     }
 
   };
@@ -79,7 +78,7 @@
   .weather-current-wrap {
 
     width: 100%;
-    color : $fontColorWhite;
+    color: $fontColorWhite;
 
     .weather-current-header {
 
@@ -98,11 +97,12 @@
       .weather-current-header-info {
         font-family: 'Roboto', sans-serif;
         font-weight: 600;
-          > div {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
+
+        > div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
         .weather-current-temperature {
           font-size: 48px;
@@ -130,6 +130,7 @@
         border-spacing: 0;
         border-collapse: collapse;
         color: $fontColorWhite;
+
         thead {
           th {
             font-size: 13px;

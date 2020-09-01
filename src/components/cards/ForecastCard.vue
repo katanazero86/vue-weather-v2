@@ -14,7 +14,7 @@
                         <span> {{forecast.weather[0].description}}</span>
                       </div>
                       <div class="flex-layout-nowrap align-item-center col-6">
-                        <img :src="`${openWeatherIconBaseUrl}/${forecast.weather[0].icon}@2x.png`" width="50" height="50"/>
+                        <img :src="`${openWeatherIconBaseUrlState}/${forecast.weather[0].icon}@2x.png`" width="50" height="50"/>
                         <span>{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
                       </div>
                     </div>
@@ -32,10 +32,12 @@
 <script>
   export default {
     name: "ForecastCard",
+
     props: {
       forecastList: {type: Array, default: [],},
-      openWeatherIconBaseUrl: {type: String, default: ''}
+      openWeatherIconBaseUrlState: {type: String, default: ''}
     },
+
   }
 </script>
 

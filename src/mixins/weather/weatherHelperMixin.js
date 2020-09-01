@@ -10,7 +10,7 @@ export default {
     }),
 
     ...mapState(STORE_NAMESPACE,
-      ['openWeatherIconBaseUrl', 'currentWeather', 'currentTime', 'forecast']
+      ['openWeatherIconBaseUrlState', 'currentWeatherState', 'currentTimeState', 'forecastState']
     )
 
   },

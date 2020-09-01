@@ -4,16 +4,15 @@
     <Dropdown dropdown-title="원하시는 도시를 선택해주세요." :dropdown-data="cityListKrJson" @select="selectCity"/>
 
     <transition name="fade">
-      <CurrentWeather :current-weather="currentWeather"
-                      :current-time="currentTime"
-                      :open-weather-icon-base-url="openWeatherIconBaseUrl"
+      <CurrentWeather :currentWeatherState="currentWeatherState"
+                      :currentTimeState="currentTimeState"
+                      :openWeatherIconBaseUrlState="openWeatherIconBaseUrlState"
                       @refresh="refreshWeather"/>
     </transition>
 
     <transition name="fade">
-      <Forecast :forecast="forecast"
-                :open-weather-icon-base-url="openWeatherIconBaseUrl"
-      />
+      <Forecast :forecastState="forecastState"
+                :openWeatherIconBaseUrlState="openWeatherIconBaseUrlState"/>
     </transition>
 
   </div>
@@ -27,11 +26,13 @@
 
   export default {
     name: 'Weather',
+
     components: {
       'Dropdown': () => import('../../components/dropdown/Dropdown'),
       'CurrentWeather': () => import('../../components/pages/weather/CurrentWeather'),
       'Forecast': () => import('../../components/pages/weather/Forecast')
     },
+
     mixins: [weatherHelperMixin],
 
     data() {
@@ -87,11 +88,11 @@
       refreshWeather() {
         this.getOpenWeatherMapWeather({...this.selectedCity});
         this.getOpenWeatherMapForecast({...this.selectedCity});
-      }
+      },
 
-    }
+    },
 
-  };
+  }
 </script>
 
 <style lang="scss" scoped>

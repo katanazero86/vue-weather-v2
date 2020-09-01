@@ -1,9 +1,7 @@
 import VueRouter from 'vue-router';
 
-import Weather from '../containers/weather/WeatherContainer';
-
 const routes = [
-  {path: '/', component: Weather}
+  {path: '/', component: () => import('../containers/weather/WeatherContainer')}
 ];
 
 export default new VueRouter({
