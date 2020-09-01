@@ -5,17 +5,17 @@
         <h2>
           Weather in {{currentWeather.name}}
         </h2>
-        <Refresh @click="refresh"/>
+        <Refresh @click="refresh" color="white"/>
       </div>
       <div class="header-time">
         조회시간: {{currentTime}}
       </div>
-      <div>
-        <h4>
-          {{currentWeather.weather[0].main}}
-          <img :src="`${openWeatherIconBaseUrl}/${currentWeather.weather[0].icon}@2x.png`" width="55" height="55"/>
-          <span>{{(currentWeather.main.temp - 273.15).toFixed(1)}} °C</span>
-        </h4>
+      <div class="weather-current-header-info">
+        <div>
+          <img :src="`${openWeatherIconBaseUrl}/${currentWeather.weather[0].icon}@2x.png`" width="85" height="85"/>
+          <span class="weather-current-temperature">{{(currentWeather.main.temp - 273.15).toFixed(1)}} °C</span>
+        </div>
+        <p>{{currentWeather.weather[0].main}}</p>
       </div>
     </div>
     <div class="weather-current-content">
@@ -51,7 +51,7 @@
   export default {
     name: 'CurrentWeather',
     components: {
-      'Refresh': () => import('../../component/icon/Refresh')
+      'Refresh': () => import('../../icons/Refresh')
     },
     props: {
       currentWeather: {type: Object, default: null},
@@ -79,6 +79,7 @@
   .weather-current-wrap {
 
     width: 100%;
+    color : $fontColorWhite;
 
     .weather-current-header {
 
@@ -94,6 +95,26 @@
         cursor: pointer;
       }
 
+      .weather-current-header-info {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 600;
+          > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+        .weather-current-temperature {
+          font-size: 48px;
+        }
+
+        p {
+          text-align: center;
+          font-size: $fontSize30;
+        }
+
+      }
+
     }
 
     .weather-current-content {
@@ -104,25 +125,26 @@
 
       table {
         width: 100%;
+        background-color: rgba(179, 209, 255, 0.45);
+        border-radius: 8px;
         border-spacing: 0;
         border-collapse: collapse;
+        color: $fontColorWhite;
         thead {
           th {
             font-size: 13px;
             letter-spacing: -0.5px;
             text-align: center;
-            font-family: "Sunflower";
-            background-color: $bgColor2;
             white-space: nowrap;
             padding: 8px;
-            color: #3e5569;
-            font-weight: 700;
+            font-weight: 500;
           }
         }
 
         tbody {
           tr {
             td {
+              padding: 8px;
               text-align: center;
               white-space: nowrap;
             }

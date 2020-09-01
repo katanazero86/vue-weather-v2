@@ -30,9 +30,9 @@
   export default {
     name: 'Weather',
     components: {
-      'Dropdown': () => import('../component/Dropdown'),
-      'CurrentWeather': () => import('./weather/CurrentWeather'),
-      'Forecast': () => import('./weather/Forecast')
+      'Dropdown': () => import('../../components/dropdown/Dropdown'),
+      'CurrentWeather': () => import('../../components/pages/weather/CurrentWeather'),
+      'Forecast': () => import('../../components/pages/weather/Forecast')
     },
     mixins: [weatherHelperMixin],
 
@@ -132,16 +132,12 @@
 
   #weather-wrap {
     min-height: 100%;
-    padding: 25px 15px;
-    background-color: $wrapBackgroundColor;
+    padding: 12px;
+    background-color: $bgBodyColor;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  @include responsive(mobile) {
-
   }
 
 </style>

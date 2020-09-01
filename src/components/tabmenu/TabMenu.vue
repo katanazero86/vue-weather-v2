@@ -38,31 +38,31 @@
 
       margin: 0;
       padding: 0;
-      background: white;
+      background: #66a3ff;
 
       .nav-tab-menu {
 
         list-style: none;
-        color: #4e4d4a;
-        font-weight: 600;
+        font-family: 'Roboto', sans-serif;
 
         button {
           border: none;
           outline: none;
           text-decoration: none;
-          background: white;
+          background: #66a3ff;
+          color: $fontColorWhite;
           padding: 10px 20px;
           cursor: pointer;
         }
 
         button:hover {
-          background: $bgColor1;
+          background: #3385ff;
         }
 
         &-active {
           button {
-            background: $bgColor1;
-            font-weight: 700;
+            background: #3385ff;
+            font-weight: 600;
           }
         }
 

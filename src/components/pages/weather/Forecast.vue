@@ -7,32 +7,30 @@
         </h2>
       </div>
     </div>
-    <div class="flex-layout-wrap row align-center justify-between weather-forecast-content">
-      <template v-for='(forecastList) in renderForecastList'>
-        <div class="col-6 forecast-card">
-          <div class="forecast-card-header">
-            {{ parseTimeStampToDate(forecastList[0].dt) }} UTC
-          </div>
-          <div>
+    <div class="flex-layout-wrap row align-item-start justify-content-between weather-forecast-content">
+      <template v-for='(forecastList, index) in renderForecastList'>
+        <div class="col-6 col-xs-12 forecast-card-wrap">
+          <div class="forecast-card-body">
+            <div class="forecast-card-header">
+              {{ parseTimeStampToDate(forecastList[0].dt) }}
+            </div>
             <table>
               <tbody>
-              <tr v-for="forecast in forecastList">
+              <tr v-for="(forecast, index) in forecastList">
                 <td>
                   <div class="flex-layout-nowrap align-item-center">
-                    <span>{{ parseTimeStampToDateHour(forecast.dt_txt) }}</span>
-                    <img :src="`${openWeatherIconBaseUrl}/${forecast.weather[0].icon}@2x.png`" width="35" height="35"/>
+                    <div class="col-6">
+                      <span>{{ parseTimeStampToDateHour(forecast.dt_txt) }}</span><br/>
+                      <span> {{forecast.weather[0].description}}</span>
+                    </div>
+                    <div class="flex-layout-nowrap align-item-center col-6">
+                      <img :src="`${openWeatherIconBaseUrl}/${forecast.weather[0].icon}@2x.png`" width="50" height="50"/>
+                      <span>{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
+                    </div>
                   </div>
                 </td>
                 <td>
-                  <div class="flex-layout-nowrap column align-item-center">
-                    <span class="forecast-temp-badge">{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
-                    <span style="font-style: italic;">{{forecast.weather[0].description}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="flex-layout-nowrap align-item-center">
-                    <span>wind:{{forecast.wind.speed}} m/s </span>
-                  </div>
+                    <p style="text-align: center">풍속 : {{forecast.wind.speed}} m/s </p>
                 </td>
               </tr>
               </tbody>
@@ -59,8 +57,8 @@
   export default {
     name: 'Forecast',
     components: {
-      TabMenu: () => import('../../component/TabMenu'),
-      LineChart: () => import('../../component/charts/LineChart')
+      TabMenu: () => import('../../tabmenu/TabMenu'),
+      LineChart: () => import('../../charts/LineChart')
     },
     props: {
       forecast: {type: Object, default: null},
@@ -104,37 +102,11 @@
       };
     },
 
-    // beforeUpdate() {
-    //   if (this.forecast) {
-    //     this.processForecastList();
-    //   }
-    // },
-
     methods: {
-      // processForecastList() {
-      //   if (this.forecast) {
-      //     const resultForecastList = [];
-      //     const targetForecast = {...this.forecast};
-      //
-      //     const dtTxt = targetForecast.list.map(forecast => forecast.dt_txt.split(' ')[0]);
-      //     const dtTxtSet = new Set(dtTxt);
-      //
-      //     dtTxtSet.forEach(dtTxt => {
-      //       const resultForecastFilter = targetForecast.list.filter(forecast => forecast.dt_txt.split(' ')[0] === dtTxt);
-      //       resultForecastList.push(resultForecastFilter);
-      //     });
-      //
-      //     if (resultForecastList.length > 0) {
-      //       this.renderForecastList = resultForecastList;
-      //     } else {
-      //       this.renderForecastList = null;
-      //     }
-      //   }
-      // },
 
       parseTimeStampToDate(timestamp) {
         const utcDate = this.$moment.unix(timestamp).tz('Asia/Seoul').toDate().toUTCString();
-        return this.$moment.utc(utcDate).format('YYYY-MM-DD(dddd)');
+        return this.$moment.utc(utcDate).format('YYYY-MM-DD dddd');
       },
 
       parseTimeStampToDateHour(dateTimeString) {
@@ -167,59 +139,76 @@
     .weather-forecast-header {
 
       .header-content {
-
+          color : $fontColorWhite;
       }
 
     }
 
     .weather-forecast-content {
 
-      .forecast-card {
-        background: #fff;
-        border-top: 2px solid transparent;
-        box-shadow: 0 1px 1px rgba(3, 3, 3, .175);
-        margin: 10px 0;
-        padding: 8px;
-        width: 480px;
+      .forecast-card-wrap {
+        padding: 8px 0;
+        width: 100%;
+        max-width: 485px;
 
-        .forecast-card-header {
-          background-color: #f5f5f5;
-          border: 1px solid #ddd;
-          font-size: 14px;
-          font-weight: 600;
-          padding: 5px;
+        @media all and (max-width: 1024px) {
+          max-width: none;
+        }
+
+        .forecast-card-body {
+
+          .forecast-card-header {
+            background-color: rgba(179, 209, 255, 0.45);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-size: $fontSize13;
+            font-weight: 600;
+            padding: 4px;
+            color: $fontColorWhite;
+          }
+
+          .forecast-temp-badge {
+            background-color: #4e4d4a;
+            border-radius: 12px;
+            color: $fontColorWhite;
+            padding: 2px 4px;
+          }
         }
 
         table {
+          background: rgba(242, 245, 255, 0.85);
           height: 100%;
           width: 100%;
-          font-size: 13px;
-          letter-spacing: -0.3px;
+          font-size: $fontSize13;
+          letter-spacing: -0.2px;
+          border-collapse: collapse;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+          color : #303030;
+          padding: 4px;
 
           tr {
             width: 100%;
+            border-bottom: 1px solid #c8d0de;
+          }
+
+          tr:last-child {
+            border-bottom: none;
           }
 
           td {
-            padding: 5px;
+            padding: 4px;
+            border-right: 1px solid #c8d0de;
           }
 
-        }
+          td:last-child {
+            border-right: none;
+          }
 
-        .forecast-temp-badge {
-          background-color: #4e4d4a;
-          border-radius: 10px;
-          color: $fontColorWhite;
-          padding: 3px 5px;
         }
 
       }
     }
 
   }
-
-  @include responsive(mobile) {
-
-  }
-
 </style>
