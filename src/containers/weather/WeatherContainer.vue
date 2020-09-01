@@ -50,7 +50,7 @@
     },
 
     beforeDestroyed() {
-      this.setInitState();
+      this.initStateAction();
     },
 
     methods: {
