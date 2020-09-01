@@ -26,12 +26,12 @@
 </template>
 
 <script>
-  
+
   export default {
     name: 'Forecast',
     components: {
       ForecastCard : () => import('../../cards/ForecastCard'),
-      TabMenu: () => import('../../tabmenu/TabMenu'),
+      TabMenu: () => import('../../tabMenu/TabMenu'),
       LineChart: () => import('../../charts/LineChart')
     },
     props: {
