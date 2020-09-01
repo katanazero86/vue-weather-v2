@@ -58,9 +58,8 @@ heroku logs -a
 ```
 /src
   /assets : icon, image, scss 자원
-  /components
-    /component : 특정 기능을 하는 컴포넌트
-    /pages : page 를 구성하는 컴포넌트 
+  /components : 컴포넌트 폴더
+  /containers : 컨테이너 컴포넌트 폴더
   /mixins : 믹스인
   /plugins : 플러그인
   /routes : 라우터
@@ -77,11 +76,6 @@ heroku logs -a
   삭제 : delete**
 
 ```
-
-### 프로젝트 실행 결과
-
-![run](./image/run.PNG)
-
 
 ## Project setup
 ```
