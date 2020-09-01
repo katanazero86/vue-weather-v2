@@ -19,6 +19,9 @@ import axiosPlugin from './plugins/axiosPlugin';
 // moment plugin
 import momentPlugin from './plugins/momentPlugin';
 
+// filters
+import './filters/index';
+
 Vue.use(axiosPlugin);
 Vue.use(momentPlugin);
 Vue.use(VueRouter);
