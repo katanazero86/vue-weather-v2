@@ -77,12 +77,12 @@
       getOpenWeatherMapWeather(targetCity) {
         const params = this.makeOpenWeatherMapParams(targetCity);
         this.setCurrentTime({currentTime: this.$moment().tz('Asia/Seoul').format('YYYY-MM-DD(dddd) HH:mm:ss')});
-        this.findOpenWeatherMapCurrentWeather({params}).catch(err => console.log(err));
+        this.findOpenWeatherMapCurrentWeatherAction({params}).catch(err => console.log(err));
       },
 
       getOpenWeatherMapForecast(targetCity) {
         const params = this.makeOpenWeatherMapParams(targetCity);
-        this.findOpenWeatherMap5DayForecast({params}).catch(err => console.log(err));
+        this.findOpenWeatherMap5DayForecastAction({params}).catch(err => console.log(err));
       },
 
       refreshWeather() {

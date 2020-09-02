@@ -17,8 +17,8 @@ export default {
 
   methods: {
     ...mapActions({
-      findOpenWeatherMapCurrentWeather: `${STORE_NAMESPACE}/findOpenWeatherMapCurrentWeather`,
-      findOpenWeatherMap5DayForecast: `${STORE_NAMESPACE}/findOpenWeatherMap5DayForecast`,
+      findOpenWeatherMapCurrentWeatherAction: `${STORE_NAMESPACE}/findOpenWeatherMapCurrentWeatherAction`,
+      findOpenWeatherMap5DayForecastAction: `${STORE_NAMESPACE}/findOpenWeatherMap5DayForecastAction`,
       setCurrentWeatherAction: `${STORE_NAMESPACE}/setCurrentWeatherAction`,
       setForecastAction: `${STORE_NAMESPACE}/setForecastAction`,
       initStateAction: `${STORE_NAMESPACE}/initStateAction`
