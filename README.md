@@ -27,7 +27,7 @@
 
 ---
 
-> ### 프로젝트 배포(deploy) <br/>
+> ### project 배포(deploy) <br/>
 > - https://www.heroku.com/ - 헤로쿠 클라우드 플랫폼을 이용하여 배포
 > - 헤로쿠 배포를 위한 express 서버 모듈 설치 및 server.js 작성
 > - 헤로쿠가 서버를 실행할 수 있도록, package.json 스크립트 추가("start": "node server.js")
