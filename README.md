@@ -3,9 +3,9 @@
 ---
 
 > ### Weather app 소개 <br/>
-> Vue.js, Vuex, Vue-router, ApexChart.js, Axios, Webacpk, Babel, HTML5, CSS3, SCSS
+> Vue.js, Vuex, Vue-router, ApexChart.js, Axios, Webpack, Babel, HTML5, CSS3, SCSS
 > - Owner & Maintainer
-> - github. [https://github.com/katanazero86/vue-weather-v2](https://github.com/katanazero86/vue-weather-v2)
+> - github. [https://github.com/katanazero86/svelte-app](https://github.com/katanazero86/svelte-app)
 > - vue-cli 를 사용하여 프로젝트 생성, OpenWeatherMap API 연동하여 날씨 웹앱 제작 및 Heroku 배포
 > - 원하는 도시를 선택하면, openWeatherMap 서비스(https://openweathermap.org/api) 에서 날씨를 조회 후 표시해줍니다. 날씨는 현재날씨와 시간별 날씨예보(4일치) 정보를 조회합니다.
 
